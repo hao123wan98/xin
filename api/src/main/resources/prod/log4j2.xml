@@ -15,7 +15,7 @@
 			<PatternLayout pattern="${PATTERN}" />
 		</File>
 
-		<RollingFile name="RollingFile" fileName="logs/app.log"
+		<RollingFile name="RollingFile" fileName="log/app.log"
 			filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout pattern="${PATTERN}" />
 			<SizeBasedTriggeringPolicy size="50MB" />

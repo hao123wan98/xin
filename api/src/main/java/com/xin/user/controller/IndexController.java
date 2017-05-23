@@ -3,6 +3,7 @@
  */
 package com.xin.user.controller;
 
+import com.xin.tools.DateUtil;
 import com.xin.tools.ServletUtils;
 import com.xin.tools.common.ParameterException;
 import com.xin.user.service.IndexService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.HashMap;
 
 @Controller
@@ -24,9 +26,9 @@ public class IndexController {
 
     @RequestMapping
     public void index(HttpServletRequest req, HttpServletResponse res) {
-        throw new ParameterException("1111");
-//        String tmp = "hello world";
-//        ServletUtils.strToJson(tmp, req, res);
+        String tmp = DateUtil.date2FullStr(new Date());
+        //String tmp = "hello world";
+        ServletUtils.strToJson(tmp, req, res);
     }
 
     // @RequestParam 简单类型的绑定，可以出来get和post

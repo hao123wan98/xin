@@ -1,4 +1,4 @@
-package com.xin.tools;
+package com.zhenhr.tools;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -11,20 +11,19 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+import org.codehaus.jackson.node.ObjectNode;
+import org.codehaus.jackson.type.JavaType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.DeserializationConfig;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.xin.tools.common.TPErrorCodeGeneral;
+import com.zhenhr.common.TPErrorCodeGeneral;
 
 /**
  * 
@@ -35,7 +34,7 @@ public class JsonUtil {
 	 * ObjectMapper 是线程安全的，可以共享，但共享的结果是效率比较低（内部应该还是有竞争冲突）
 	 * 使用空间换取时间，为没有引用对象创建一个副本。
 	 */
-	private static ThreadLocal<ObjectMapper> localMapper = new ThreadLocal<ObjectMapper>();
+	private static ThreadLocal localMapper = new ThreadLocal();
 
 	private static ObjectMapper getMapper() {
 		ObjectMapper mapper = (ObjectMapper) localMapper.get();
@@ -49,9 +48,10 @@ public class JsonUtil {
 		 * NULL 都不序列化 //Include.NON_NULL 属性为NULL 不序列化
 		 */
 		// mapper.setSerializationInclusion(Inclusion.NON_NULL);
-		mapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+		mapper.setSerializationInclusion(Inclusion.ALWAYS);
 		// 设置输入时忽略JSON字符串中存在而Java对象实际没有的属性
-		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		mapper.configure(
+				DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		return mapper;
 	}
 
@@ -78,7 +78,8 @@ public class JsonUtil {
 		ObjectMapper mapper = JsonUtil.getMapper();
 		List<T> list = null;
 		try {
-			JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, classType);
+			JavaType javaType = mapper.getTypeFactory()
+					.constructParametricType(List.class, classType);
 			list = mapper.readValue(jsonStr, javaType);
 		} catch (JsonParseException e) {
 			log.error(classType.toString() + e.getMessage());
@@ -112,11 +113,11 @@ public class JsonUtil {
 
 	public static String mapStrTojson(Map<String, ?> map) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			// 遍历map
 			writeTreeMap(g, map);
@@ -134,11 +135,11 @@ public class JsonUtil {
 
 	public static String resultErrorToJson(String errCode, String errMsg) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeStringField("code", errCode);
 			if (errMsg != null) {
@@ -162,16 +163,17 @@ public class JsonUtil {
 	 * @updator: 李树涛
 	 * @updateTime 2015年1月21日 下午7:39:13
 	 * @Description: 填写修改内容 ==============
+	 * @param jsonParams
 	 *            attr
 	 * @return
 	 */
 	public static String resultObjTojson(Object obj) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -196,11 +198,11 @@ public class JsonUtil {
 
 	public static String resultObjTojson() {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -216,11 +218,11 @@ public class JsonUtil {
 
 	public static String resultObjAndStrTojson(String str) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -239,11 +241,11 @@ public class JsonUtil {
 
 	public static String resultObjTojson(List<?> list) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -274,11 +276,11 @@ public class JsonUtil {
 
 	public static String listToJson(List<?> list) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartArray();
 			for (Object tem : list) {
 				if (tem instanceof Map) {
@@ -302,11 +304,11 @@ public class JsonUtil {
 
 	public static String resultObjTojson(Map<String, ?> map) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -326,7 +328,8 @@ public class JsonUtil {
 	}
 
 	@SuppressWarnings({ "unchecked", "unused" })
-	private static void writeTreeMap(JsonGenerator g, Map<String, ?> map) throws JsonGenerationException, IOException {
+	private static void writeTreeMap(JsonGenerator g, Map<String, ?> map)
+			throws JsonGenerationException, IOException {
 		Iterator<String> iterator = map.keySet().iterator();
 		while (iterator.hasNext()) {
 			String key = iterator.next();
@@ -348,11 +351,11 @@ public class JsonUtil {
 
 	public static String resultObjTojson(String key, Object value) {
 		ObjectMapper mapper = JsonUtil.getMapper();
-		JsonFactory f = mapper.getFactory();
+		JsonFactory f = mapper.getJsonFactory();
 		StringWriter w = new StringWriter();
 		JsonGenerator g;
 		try {
-			g = f.createGenerator(w);
+			g = f.createJsonGenerator(w);
 			g.writeStartObject();// {
 			g.writeObjectField("code", TPErrorCodeGeneral.Succeed_Param);
 			g.writeStringField("msg", "ok");
@@ -471,7 +474,8 @@ public class JsonUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<String> readValueFromJson(String json, String tagPath) throws Exception {
+	public static List<String> readValueFromJson(String json, String tagPath)
+			throws Exception {
 		// 返回值
 		List<String> value = new ArrayList<String>();
 		if (CommonUtil.isEmpty(json) || (CommonUtil.isEmpty(tagPath))) {
@@ -484,7 +488,8 @@ public class JsonUtil {
 		return value;
 	}
 
-	public static void getJsonValue(JsonNode node, String[] path, List<String> values, int nextIndex) {
+	public static void getJsonValue(JsonNode node, String[] path,
+			List<String> values, int nextIndex) {
 		if (CommonUtil.isEmpty(node)) {
 			return;
 		}

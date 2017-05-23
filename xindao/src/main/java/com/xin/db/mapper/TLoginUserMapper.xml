@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xin.db.dao.TLoginUserMapper" >
+  <resultMap id="BaseResultMap" type="com.xin.db.entity.TLoginUser" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="origo" property="origo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="work_start_date" property="workStartDate" jdbcType="VARCHAR" />
+    <result column="last_company_name" property="lastCompanyName" jdbcType="VARCHAR" />
+    <result column="last_company_pos" property="lastCompanyPos" jdbcType="VARCHAR" />
+    <result column="last_salary" property="lastSalary" jdbcType="VARCHAR" />
+    <result column="cv_path" property="cvPath" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, pwd, name, gender, birthday, origo, mobile, email, wechat, work_start_date, 
+    last_company_name, last_company_pos, last_salary, cv_path, openid, create_time, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xin.db.entity.TLoginUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="page != null" >
+      limit #{page.begin} , #{page.size}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xin.db.entity.TLoginUserExample" >
+    delete from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xin.db.entity.TLoginUser" >
+    <selectKey resultType="java.lang.Long" keyProperty="userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user (pwd, name, gender, 
+      birthday, origo, mobile, 
+      email, wechat, work_start_date, 
+      last_company_name, last_company_pos, last_salary, 
+      cv_path, openid, create_time, 
+      state)
+    values (#{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{origo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{workStartDate,jdbcType=VARCHAR}, 
+      #{lastCompanyName,jdbcType=VARCHAR}, #{lastCompanyPos,jdbcType=VARCHAR}, #{lastSalary,jdbcType=VARCHAR}, 
+      #{cvPath,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xin.db.entity.TLoginUser" >
+    <selectKey resultType="java.lang.Long" keyProperty="userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="origo != null" >
+        origo,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="workStartDate != null" >
+        work_start_date,
+      </if>
+      <if test="lastCompanyName != null" >
+        last_company_name,
+      </if>
+      <if test="lastCompanyPos != null" >
+        last_company_pos,
+      </if>
+      <if test="lastSalary != null" >
+        last_salary,
+      </if>
+      <if test="cvPath != null" >
+        cv_path,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="origo != null" >
+        #{origo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="workStartDate != null" >
+        #{workStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCompanyName != null" >
+        #{lastCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCompanyPos != null" >
+        #{lastCompanyPos,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSalary != null" >
+        #{lastSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="cvPath != null" >
+        #{cvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xin.db.entity.TLoginUserExample" resultType="java.lang.Integer" >
+    select count(*) from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.origo != null" >
+        origo = #{record.origo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workStartDate != null" >
+        work_start_date = #{record.workStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastCompanyName != null" >
+        last_company_name = #{record.lastCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastCompanyPos != null" >
+        last_company_pos = #{record.lastCompanyPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastSalary != null" >
+        last_salary = #{record.lastSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cvPath != null" >
+        cv_path = #{record.cvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user
+    set user_id = #{record.userId,jdbcType=BIGINT},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=CHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      origo = #{record.origo,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      work_start_date = #{record.workStartDate,jdbcType=VARCHAR},
+      last_company_name = #{record.lastCompanyName,jdbcType=VARCHAR},
+      last_company_pos = #{record.lastCompanyPos,jdbcType=VARCHAR},
+      last_salary = #{record.lastSalary,jdbcType=VARCHAR},
+      cv_path = #{record.cvPath,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xin.db.entity.TLoginUser" >
+    update t_user
+    <set >
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="origo != null" >
+        origo = #{origo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="workStartDate != null" >
+        work_start_date = #{workStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCompanyName != null" >
+        last_company_name = #{lastCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCompanyPos != null" >
+        last_company_pos = #{lastCompanyPos,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSalary != null" >
+        last_salary = #{lastSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="cvPath != null" >
+        cv_path = #{cvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xin.db.entity.TLoginUser" >
+    update t_user
+    set pwd = #{pwd,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      origo = #{origo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      work_start_date = #{workStartDate,jdbcType=VARCHAR},
+      last_company_name = #{lastCompanyName,jdbcType=VARCHAR},
+      last_company_pos = #{lastCompanyPos,jdbcType=VARCHAR},
+      last_salary = #{lastSalary,jdbcType=VARCHAR},
+      cv_path = #{cvPath,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

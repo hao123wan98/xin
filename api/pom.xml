@@ -5,8 +5,10 @@
     <groupId>com.xin</groupId>
     <artifactId>api</artifactId>
 
-    <packaging>jar</packaging>
-    <!-- <packaging>war</packaging> -->
+    <!--<packaging>jar</packaging>-->
+
+    <packaging>war</packaging>
+
     <version>1.0</version>
     <url>http://maven.apache.org</url>
 
@@ -16,6 +18,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     </properties>
+
+    <modules>
+        <module>../zhenhrtools</module>
+        <module>../xindao</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,11 +37,30 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>8.0.36</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--热部署-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>springloaded</artifactId>-->
+        <!--</dependency>-->
+
+        <!--测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -58,6 +84,29 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
+        <!-- MYSQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- Spring Boot JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!--mybatis-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -67,6 +116,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
         </plugins>
     </build>
 
