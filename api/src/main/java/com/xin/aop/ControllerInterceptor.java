@@ -32,7 +32,6 @@ public class ControllerInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(ControllerInterceptor.class);
 
-
     /**
      * 在业务处理器处理请求之前被调用 如果返回false 从当前的拦截器往回执行所有拦截器的afterCompletion(),再退出拦截器链
      * <p>
