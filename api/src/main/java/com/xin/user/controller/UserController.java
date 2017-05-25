@@ -4,7 +4,6 @@
 package com.xin.user.controller;
 
 import com.xin.db.entity.TLoginUser;
-import com.xin.tools.DateUtil;
 import com.xin.tools.ServletUtils;
 import com.xin.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
 
 @Controller
 @RequestMapping(value = "/user")
