@@ -17,6 +17,7 @@
     <result column="last_salary" property="lastSalary" jdbcType="VARCHAR" />
     <result column="cv_path" property="cvPath" jdbcType="VARCHAR" />
     <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="CHAR" />
   </resultMap>
@@ -80,7 +81,8 @@
   </sql>
   <sql id="Base_Column_List" >
     user_id, pwd, name, gender, birthday, origo, mobile, email, wechat, work_start_date, 
-    last_company_name, last_company_pos, last_salary, cv_path, openid, create_time, state
+    last_company_name, last_company_pos, last_salary, cv_path, openid, token, create_time, 
+    state
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xin.db.entity.TLoginUserExample" >
     select
@@ -123,14 +125,14 @@
       birthday, origo, mobile, 
       email, wechat, work_start_date, 
       last_company_name, last_company_pos, last_salary, 
-      cv_path, openid, create_time, 
-      state)
+      cv_path, openid, token, 
+      create_time, state)
     values (#{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
       #{birthday,jdbcType=VARCHAR}, #{origo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{workStartDate,jdbcType=VARCHAR}, 
       #{lastCompanyName,jdbcType=VARCHAR}, #{lastCompanyPos,jdbcType=VARCHAR}, #{lastSalary,jdbcType=VARCHAR}, 
-      #{cvPath,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=CHAR})
+      #{cvPath,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xin.db.entity.TLoginUser" >
     <selectKey resultType="java.lang.Long" keyProperty="userId" order="AFTER" >
@@ -179,6 +181,9 @@
       </if>
       <if test="openid != null" >
         openid,
+      </if>
+      <if test="token != null" >
+        token,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -229,6 +234,9 @@
       </if>
       <if test="openid != null" >
         #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -292,6 +300,9 @@
       <if test="record.openid != null" >
         openid = #{record.openid,jdbcType=VARCHAR},
       </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -320,6 +331,7 @@
       last_salary = #{record.lastSalary,jdbcType=VARCHAR},
       cv_path = #{record.cvPath,jdbcType=VARCHAR},
       openid = #{record.openid,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       state = #{record.state,jdbcType=CHAR}
     <if test="_parameter != null" >
@@ -371,6 +383,9 @@
       <if test="openid != null" >
         openid = #{openid,jdbcType=VARCHAR},
       </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -396,6 +411,7 @@
       last_salary = #{lastSalary,jdbcType=VARCHAR},
       cv_path = #{cvPath,jdbcType=VARCHAR},
       openid = #{openid,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=CHAR}
     where user_id = #{userId,jdbcType=BIGINT}

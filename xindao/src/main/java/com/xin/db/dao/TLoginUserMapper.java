@@ -5,7 +5,6 @@ import com.xin.db.entity.TLoginUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-
 public interface TLoginUserMapper {
     int countByExample(TLoginUserExample example);
 
