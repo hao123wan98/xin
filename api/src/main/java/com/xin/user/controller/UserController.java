@@ -9,6 +9,7 @@ import com.xin.tools.ServletUtils;
 import com.xin.user.dao.LoginOKVO;
 import com.xin.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,14 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController extends BaseController {
     @Autowired
     UserService userService;
+    @Value("$(test_mode)")
+    private String test_mode;
+
+    @RequestMapping(value = "test")
+    public void test(HttpServletRequest req, HttpServletResponse res) {
+        ServletUtils.toJson("code", test_mode, req, res);
+
+    }
 
 
     /**
