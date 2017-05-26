@@ -110,12 +110,6 @@
             <version>1.9.13</version>
         </dependency>
 
-        <dependency>
-            <groupId>QRCode</groupId>
-            <artifactId>QRCode</artifactId>
-            <version>3.0</version>
-        </dependency>
-
         <!-- mvn install:install-file -Dfile=/Volumes/work/software/QRCode.jar
             -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpackaging=jar -->
 

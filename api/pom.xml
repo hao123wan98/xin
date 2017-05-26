@@ -131,9 +131,11 @@
         <!---->
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>1.5.0.RELEASE</version>
+            <groupId>taobao</groupId>
+            <artifactId>sms</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+	    <systemPath>${project.basedir}/src/main/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
         </dependency>
 
     </dependencies>
