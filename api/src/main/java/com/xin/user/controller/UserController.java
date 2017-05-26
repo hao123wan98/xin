@@ -5,6 +5,7 @@ package com.xin.user.controller;
 
 import com.xin.common.BaseController;
 import com.xin.db.entity.TLoginUser;
+import com.xin.system.SystemService;
 import com.xin.tools.ServletUtils;
 import com.xin.user.dao.LoginOKVO;
 import com.xin.user.service.UserService;
@@ -22,12 +23,18 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController extends BaseController {
     @Autowired
     UserService userService;
-    @Value("$(test_mode)")
-    private String test_mode;
+    @Autowired
+    SystemService systemService;
 
     @RequestMapping(value = "test")
     public void test(HttpServletRequest req, HttpServletResponse res) {
-        ServletUtils.toJson("code", test_mode, req, res);
+        if (systemService.isTestMode()) {
+            ServletUtils.toJson("code", "true", req, res);
+
+        } else {
+            ServletUtils.toJson("code", "false", req, res);
+        }
+
 
     }
 

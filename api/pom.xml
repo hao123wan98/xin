@@ -135,7 +135,7 @@
             <artifactId>sms</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-	    <systemPath>${project.basedir}/src/main/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
         </dependency>
 
     </dependencies>
