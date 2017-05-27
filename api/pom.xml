@@ -138,6 +138,14 @@
             <systemPath>${project.basedir}/src/main/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
         </dependency>
 
+        <!-- qclode cos -->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>4.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

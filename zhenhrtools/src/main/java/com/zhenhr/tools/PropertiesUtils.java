@@ -162,7 +162,7 @@ public class PropertiesUtils {
 		Properties p = new Properties();
 		try {
 			InputStream inputStream = PropertiesUtils.class.getClassLoader()
-					.getResourceAsStream("test/" + name);
+					.getResourceAsStream("properties/" + name);
 
 			p.load(inputStream);
 

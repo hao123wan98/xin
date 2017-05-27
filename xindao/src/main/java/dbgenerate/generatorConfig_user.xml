@@ -48,14 +48,20 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
+
         <table tableName="t_smslog" domainObjectName="TSMSLog"/>
         <table tableName="t_piccode" domainObjectName="TPicCode"/>
-
         <table tableName="t_user" domainObjectName="TLoginUser">
             <generatedKey column="user_id" sqlStatement="Mysql"
                           identity="true" type="post"/>
         </table>
+        <table tableName="t_user_postion" domainObjectName="TUserPostion"/>
 
+        <table tableName="t_company" domainObjectName="TCompany">
+            <generatedKey column="company_id" sqlStatement="Mysql"
+                          identity="true" type="post"/>
+        </table>
+        <table tableName="t_company_postion" domainObjectName="TCompanyPostion"/>
 
 
     </context>

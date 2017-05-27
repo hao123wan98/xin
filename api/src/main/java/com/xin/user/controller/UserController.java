@@ -6,11 +6,10 @@ package com.xin.user.controller;
 import com.xin.common.BaseController;
 import com.xin.db.entity.TLoginUser;
 import com.xin.system.SystemService;
-import com.xin.tools.ServletUtils;
 import com.xin.user.dao.LoginOKVO;
 import com.xin.user.service.UserService;
+import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,18 +24,6 @@ public class UserController extends BaseController {
     UserService userService;
     @Autowired
     SystemService systemService;
-
-    @RequestMapping(value = "test")
-    public void test(HttpServletRequest req, HttpServletResponse res) {
-        if (systemService.isTestMode()) {
-            ServletUtils.toJson("code", "true", req, res);
-
-        } else {
-            ServletUtils.toJson("code", "false", req, res);
-        }
-
-
-    }
 
 
     /**

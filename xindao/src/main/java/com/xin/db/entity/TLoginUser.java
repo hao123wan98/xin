@@ -36,6 +36,8 @@ public class TLoginUser implements Serializable {
 
     private String token;
 
+    private String role;
+
     private Date createTime;
 
     private String state;
@@ -170,6 +172,14 @@ public class TLoginUser implements Serializable {
         this.token = token == null ? null : token.trim();
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role == null ? null : role.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -214,6 +224,7 @@ public class TLoginUser implements Serializable {
             && (this.getCvPath() == null ? other.getCvPath() == null : this.getCvPath().equals(other.getCvPath()))
             && (this.getOpenid() == null ? other.getOpenid() == null : this.getOpenid().equals(other.getOpenid()))
             && (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()))
+            && (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
     }
@@ -238,6 +249,7 @@ public class TLoginUser implements Serializable {
         result = prime * result + ((getCvPath() == null) ? 0 : getCvPath().hashCode());
         result = prime * result + ((getOpenid() == null) ? 0 : getOpenid().hashCode());
         result = prime * result + ((getToken() == null) ? 0 : getToken().hashCode());
+        result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         return result;
