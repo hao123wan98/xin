@@ -866,6 +866,76 @@ public class TCompanyExample {
             return (Criteria) this;
         }
 
+        public Criteria andReviewNoteIsNull() {
+            addCriterion("review_note is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteIsNotNull() {
+            addCriterion("review_note is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteEqualTo(String value) {
+            addCriterion("review_note =", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteNotEqualTo(String value) {
+            addCriterion("review_note <>", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteGreaterThan(String value) {
+            addCriterion("review_note >", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteGreaterThanOrEqualTo(String value) {
+            addCriterion("review_note >=", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteLessThan(String value) {
+            addCriterion("review_note <", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteLessThanOrEqualTo(String value) {
+            addCriterion("review_note <=", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteLike(String value) {
+            addCriterion("review_note like", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteNotLike(String value) {
+            addCriterion("review_note not like", value, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteIn(List<String> values) {
+            addCriterion("review_note in", values, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteNotIn(List<String> values) {
+            addCriterion("review_note not in", values, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteBetween(String value1, String value2) {
+            addCriterion("review_note between", value1, value2, "reviewNote");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewNoteNotBetween(String value1, String value2) {
+            addCriterion("review_note not between", value1, value2, "reviewNote");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -1045,6 +1115,11 @@ public class TCompanyExample {
 
         public Criteria andReviewStateLikeInsensitive(String value) {
             addCriterion("upper(review_state) like", value.toUpperCase(), "reviewState");
+            return this;
+        }
+
+        public Criteria andReviewNoteLikeInsensitive(String value) {
+            addCriterion("upper(review_note) like", value.toUpperCase(), "reviewNote");
             return this;
         }
 

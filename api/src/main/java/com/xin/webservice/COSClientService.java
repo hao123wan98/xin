@@ -179,10 +179,18 @@ public class COSClientService {
     }
 
     public static void main(String[] args) {
+//        Integer a = 10;
+//        Integer b = 10;
+//        Long l = 20L;
+//        Integer c = 200;
+//        Integer d = 200;
+//        System.out.println(a == b);
+//
+//        System.out.println(c.equals(d));
+//
+//        System.out.println(l == a+b);
+//        System.out.println(l.equals( a+b));
 
-//        String sign = COSClientService.createFileSign("jpg").getKey();
-//        System.out.println("sign=" + sign);
 
-        COSClientService.testUpload();
     }
 }

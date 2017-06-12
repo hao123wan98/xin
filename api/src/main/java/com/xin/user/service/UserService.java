@@ -10,7 +10,9 @@ import com.xin.webservice.SMSClient;
 import com.zhenhr.common.ParameterException;
 import com.zhenhr.common.TPErrorCodeGeneral;
 import com.zhenhr.common.ToUserException;
+import com.zhenhr.tools.Base64;
 import com.zhenhr.tools.ObjectUtils;
+import com.zhenhr.tools.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,7 +76,7 @@ public class UserService extends BaseService {
         }
     }
 
-    public LoginOKVO mobileRegister(String mobile, String smscode, String pwd,
+    public LoginOKVO mobileRegister(String mobile, String smscode, String pwd, String role,
                                     String ip) {
         this.isValidMobie(mobile);
 
@@ -104,11 +106,13 @@ public class UserService extends BaseService {
             // 注册
             firstFlag = true;
             user = new TLoginUser();
-            user.setName(mobile);
+            user.setName("");
             user.setMobile(mobile);
             user.setPwd(pwd);
+            user.setGender("0");
             user.setCreateTime(new Date());
             user.setState("1");
+            user.setRole(role);
         } else { // login
             user = list.get(0);
             if (user.getState().equals("0")) {
@@ -123,6 +127,7 @@ public class UserService extends BaseService {
 //            this.runRegisterTask(user.getUserId());
         } else {
             user.setPwd(pwd);
+            user.setRole(role);
             userMapper.updateByPrimaryKey(user);
         }
 
@@ -242,6 +247,7 @@ public class UserService extends BaseService {
 
         LoginOKVO vo = new LoginOKVO();
         vo.setToken(token);
+        vo.setRole(user.getRole());
 
         // 发送注册邮件
         return vo;
@@ -277,6 +283,30 @@ public class UserService extends BaseService {
 
     public TLoginUser get(Long userId) {
         return userMapper.selectByPrimaryKey(userId);
+    }
+
+
+    public void roleSwitch(Long userId, String role) {
+        TLoginUser user = this.get(userId);
+        if (role.equals(user.getRole())) {
+            return;
+        }
+
+        user.setRole(role);
+        userMapper.updateByPrimaryKey(user);
+
+    }
+
+    /**
+     * 发送个人简历
+     *
+     * @param userId
+     */
+    public void sendCVEmail(Long userId) {
+        String str = RandomUtils.generateNumber(4) + userId;
+        String base64 = Base64.encode(str.getBytes());
+
+
     }
 
 }

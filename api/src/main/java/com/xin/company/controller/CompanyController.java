@@ -1,7 +1,9 @@
 package com.xin.company.controller;
 
 import com.xin.common.BaseController;
+import com.xin.common.ListPageVO;
 import com.xin.company.service.CompanyService;
+import com.xin.db.common.Page;
 import com.xin.db.entity.TCompany;
 import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,25 @@ public class CompanyController extends BaseController {
         ServletUtils.toJson(company, req, res);
     }
 
+    @RequestMapping(value = "list")
+    public void getInfo(HttpServletRequest req, HttpServletResponse res, Page page, String reviewState) {
+        ListPageVO vo = companyService.list(page, reviewState);
+        ServletUtils.toJson(vo, req, res);
+    }
 
+
+//    /**
+//     * 提交审核
+//     *
+//     * @param req
+//     * @param res
+//     */
+//    @RequestMapping(value = "commit/review")
+//    public void review(HttpServletRequest req, HttpServletResponse res) {
+//        Long userId = this.getUserId(req);
+//        TCompany company = companyService.getCompany(userId);
+//        ServletUtils.toJson(company, req, res);
+//    }
 
 
 }

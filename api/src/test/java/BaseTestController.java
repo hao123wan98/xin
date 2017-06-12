@@ -16,7 +16,7 @@ public class BaseTestController {
 
     protected MockMvc mockMvc;
     //
-    public String token = "f833d400299b7d757dc72d406d555c32935bbabd";
+    public String token = "41dac444d58b9ef81ea297e11e84860be53e5d90";
 
     @Before
     public void setUp() {

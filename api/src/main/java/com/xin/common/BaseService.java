@@ -1,8 +1,10 @@
 package com.xin.common;
 
+import com.xin.company.service.CompanyService;
 import com.zhenhr.common.ParameterException;
 import com.zhenhr.common.TPErrorCodeGeneral;
 import com.zhenhr.common.ToUserException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
  * @author guoyongshi
  */
 public class BaseService {
+    @Autowired
+    CompanyService companyService;
 
     public void judgeTid(Object tid) {
         if (tid == null) {
@@ -169,4 +173,13 @@ public class BaseService {
         return true;
     }
 
+    /**
+     * 企业Id
+     *
+     * @param userId
+     * @return
+     */
+    public Long getCompanyId(Long userId) {
+        return companyService.getCompanyId(userId);
+    }
 }

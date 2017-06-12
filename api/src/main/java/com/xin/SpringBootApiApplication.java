@@ -9,7 +9,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-@MapperScan("com.xin.db.dao")
+@MapperScan(basePackages = {"com.xin.db.dao", "com.xin.self.db.dao"})
+
 public class SpringBootApiApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {

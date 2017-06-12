@@ -26,6 +26,8 @@ public class TCompany implements Serializable {
 
     private String reviewState;
 
+    private String reviewNote;
+
     private Date createTime;
 
     private String state;
@@ -120,6 +122,14 @@ public class TCompany implements Serializable {
         this.reviewState = reviewState == null ? null : reviewState.trim();
     }
 
+    public String getReviewNote() {
+        return reviewNote;
+    }
+
+    public void setReviewNote(String reviewNote) {
+        this.reviewNote = reviewNote == null ? null : reviewNote.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -159,6 +169,7 @@ public class TCompany implements Serializable {
             && (this.getWechat() == null ? other.getWechat() == null : this.getWechat().equals(other.getWechat()))
             && (this.getLogo() == null ? other.getLogo() == null : this.getLogo().equals(other.getLogo()))
             && (this.getReviewState() == null ? other.getReviewState() == null : this.getReviewState().equals(other.getReviewState()))
+            && (this.getReviewNote() == null ? other.getReviewNote() == null : this.getReviewNote().equals(other.getReviewNote()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
     }
@@ -178,6 +189,7 @@ public class TCompany implements Serializable {
         result = prime * result + ((getWechat() == null) ? 0 : getWechat().hashCode());
         result = prime * result + ((getLogo() == null) ? 0 : getLogo().hashCode());
         result = prime * result + ((getReviewState() == null) ? 0 : getReviewState().hashCode());
+        result = prime * result + ((getReviewNote() == null) ? 0 : getReviewNote().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         return result;

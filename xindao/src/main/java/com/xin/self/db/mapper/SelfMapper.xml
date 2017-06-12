@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xin.self.db.dao.SelfMapper">
+
+    <update id="salaryComplete" parameterType="map">
+		update
+		t_salary_employee set history_flag = 1
+		where company_id = #{companyId}
+		and
+		salary_date = #{salaryDate}
+	</update>
+
+    <select id="listEmployee" parameterType="map" resultType="java.util.HashMap">
+        select
+        t1.zh_eid, t1.employee_no,t1.agreement_type,t1.depart_id,
+        t1.postion_name,t1.entry_date,t1.probation_end_date,t1.formal_flag,
+        IFNULL(t1.leave_date,'') as leave_date,
+        t2.name_cn,t2.tel_location,t2.avatar,
+        t3.probation_total,t3.formal_total,t3.day_salary,
+        IFNULL(t3.last_change_date,'') as last_change_date,
+        t4.depart_name
+        from
+        t_employee t1
+        left
+        join
+        t_employee_basicinfo t2 on
+        t1.zh_eid =
+        t2.zh_eid
+        left join
+        t_employee_salary t3 on t1.zh_eid =
+        t3.zh_eid
+        left join
+        t_company_departs t4 on (t1.depart_id = t4.tid
+        and
+        t4.company_id =
+        t1.company_id)
+        where
+        t1.company_id = #{companyId}
+        <if test="state != null">
+            and t1.state=#{state}
+        </if>
+
+        <if test="orderby != null">
+            order by ${orderby}
+        </if>
+
+        <if test="begin !=null ">
+            limit
+            #{begin},#{end}
+        </if>
+    </select>
+
+    <select id="listSalary" parameterType="map" resultType="java.util.HashMap">
+        select
+        t1.*,
+        t2.name_cn,
+        t3.employee_no,t3.agreement_type,t3.entry_date,
+        t4.depart_name
+        from
+        t_salary_employee t1
+        left join t_employee_basicinfo
+        t2 on t1.zh_eid =
+        t2.zh_eid
+        left join t_employee t3 on t1.zh_eid =
+        t3.zh_eid
+        left join
+        t_company_departs t4 on (t4.company_id =
+        t1.company_id and
+        t4.tid =
+        t3.depart_id)
+        where t1.company_id =
+        #{companyId}
+        <if test="historyFlag !=null ">
+            and history_flag = 1
+        </if>
+
+        <if test="salaryDate !=null ">
+            and t1.salary_date =#{salaryDate}
+        </if>
+
+        <if test="orderby !=null ">
+            order by ${orderby}
+        </if>
+
+        <if test="begin !=null ">
+            limit
+            #{begin},#{end}
+        </if>
+    </select>
+
+    <!-- <select id="getEmployeeAllFields" parameterType="Long" resultType="java.util.HashMap">
+        select t1.*,t2.*,t3.* from t_employee_basicinfo t1,t_employee t2,t_employee_salary
+        t3 where t1.zh_eid = t2.zh_eid and t1.zh_eid = t3.zh_eid and t1.zh_eid =
+        ${zhEid} </select> -->
+
+
+    <select id="execSqlSelect" parameterType="String" resultType="java.util.HashMap">
+		${value}
+	</select>
+
+    <update id="execSql" parameterType="String">
+		${value}
+	</update>
+
+    <select id="countBySql" parameterType="String" resultType="java.lang.Integer">
+		${value}
+	</select>
+
+</mapper>

@@ -63,6 +63,11 @@ public class ControllerAop {
         try {
             o = pjp.proceed();
             return o;
+        } catch (TokenException e) {
+            BaseResultObj obj = new BaseResultObj(e.errorCode, e.getMessage());
+            ServletUtils.writeString(JsonUtil.toJson(obj), req, res);
+            logger.info("token error");
+            return null;
         } catch (ParameterException e) {
             BaseResultObj obj = new BaseResultObj(e.errorCode, e.getMessage());
             ServletUtils.writeString(JsonUtil.toJson(obj), req, res);

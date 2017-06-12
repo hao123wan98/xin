@@ -20,7 +20,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  * @author: 李树他
  * @createTime: 2015年1月31日 下午3:14:22
  */
-public final class MySQLPaginationPlugin extends PluginAdapter {
+public final class MySQLPagePlugin extends PluginAdapter {
 	private static String PageClassPath = "com.xin.db.common.Page";
 	
 	@Override

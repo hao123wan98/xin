@@ -17,7 +17,7 @@
         <!-- <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
 
         <!-- 分页插件 -->
-        <plugin type="com.xin.db.common.MySQLPaginationPlugin"/>
+        <plugin type="com.xin.db.common.MySQLPagePlugin"/>
 
         <!-- -->
         <commentGenerator>

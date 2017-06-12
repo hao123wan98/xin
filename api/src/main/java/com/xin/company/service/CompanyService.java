@@ -1,6 +1,9 @@
 package com.xin.company.service;
 
+import com.xin.XinGeneralCode;
 import com.xin.common.BaseService;
+import com.xin.common.ListPageVO;
+import com.xin.db.common.Page;
 import com.xin.db.dao.TCompanyMapper;
 import com.xin.db.entity.TCompany;
 import com.xin.db.entity.TCompanyExample;
@@ -43,6 +46,10 @@ public class CompanyService extends BaseService {
             companyMapper.insertSelective(company);
         } else {
             ObjectUtils.mergeSameClassValue(company, old);
+            if (!old.getReviewState().equals(XinGeneralCode.review_company_access)) {
+                old.setReviewState(XinGeneralCode.review_company_none);
+            }
+
             companyMapper.updateByPrimaryKey(old);
         }
     }
@@ -58,6 +65,47 @@ public class CompanyService extends BaseService {
         }
 
         return list.get(0);
+    }
+
+
+    public Long getCompanyId(Long userId) {
+        TCompany com = this.getCompany(userId);
+        if (com == null) {
+            throw new ToUserException("请先完善企业信息", null);
+        }
+
+        if (com.getReviewState().equals(XinGeneralCode.review_company_none)) {
+            throw new ToUserException("企业还未审核", null);
+        }
+
+        if (com.getReviewState().equals(XinGeneralCode.review_company_failed)) {
+            throw new ToUserException("企业审核失败", null);
+        }
+
+        return com.getCompanyId();
+    }
+
+    /**
+     * 获取企业列表
+     *
+     * @param page
+     * @return
+     */
+    public ListPageVO list(Page page, String state) {
+        TCompanyExample exam = new TCompanyExample();
+        if (state != null) {
+            exam.createCriteria().andStateEqualTo("1").andReviewStateEqualTo(state);
+        } else {
+            exam.createCriteria().andStateEqualTo("1");
+        }
+        int count = companyMapper.countByExample(exam);
+
+        exam.setPage(page);
+        List<TCompany> list = companyMapper.selectByExample(exam);
+        ListPageVO vo = new ListPageVO();
+        vo.setList(list);
+        vo.setPage(page.getPageNo(), page.getSize(), count);
+        return vo;
     }
 
 

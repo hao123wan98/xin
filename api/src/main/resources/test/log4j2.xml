@@ -25,7 +25,7 @@
     </appenders>
 
     <loggers>
-        <logger name="com.roncoo.education" level="error"/>
+        <!--<logger name="com.xin" level="error"/>-->
         <logger name="log4j.logger.java.sql" level="debug" additivity="false">
             <appender-ref ref="Console"/>
         </logger>

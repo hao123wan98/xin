@@ -54,9 +54,9 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "register")
     public void register(HttpServletRequest req, HttpServletResponse res, String mobile,
-                         String smscode, String pwd) {
+                         String smscode, String pwd, String role) {
         String ip = req.getRemoteHost();
-        LoginOKVO vo = userService.mobileRegister(mobile, smscode, pwd, ip);
+        LoginOKVO vo = userService.mobileRegister(mobile, smscode, pwd, role, ip);
         ServletUtils.toJson(vo, req, res);
     }
 
@@ -109,7 +109,7 @@ public class UserController extends BaseController {
     }
 
     // @RequestParam 简单类型的绑定，可以出来get和post
-    @RequestMapping(value = "/get")
+    @RequestMapping(value = "info/get")
     public void get(HttpServletRequest req, HttpServletResponse res) {
         Long userId = this.getUserId(req);
         TLoginUser user = userService.get(userId);
@@ -124,7 +124,7 @@ public class UserController extends BaseController {
      * @param res
      * @param user
      */
-    @RequestMapping(value = "set")
+    @RequestMapping(value = "info/set")
     public void set(HttpServletRequest req, HttpServletResponse res, TLoginUser user) {
         Long userId = this.getUserId(req);
         user.setUserId(userId);
@@ -133,5 +133,33 @@ public class UserController extends BaseController {
         ServletUtils.toJson(req, res);
     }
 
+
+    /**
+     * 切换身份
+     *
+     * @param req
+     * @param res
+     * @param role
+     */
+    @RequestMapping(value = "role/switch")
+    public void roleSwitch(HttpServletRequest req, HttpServletResponse res, String role) {
+        Long userId = this.getUserId(req);
+        userService.roleSwitch(userId, role);
+        ServletUtils.toJson(req, res);
+    }
+
+    /**
+     * 发送完善简历邮件
+     *
+     * @param req
+     * @param res
+     */
+    @RequestMapping(value = "send/cvmail")
+    public void sendCVMail(HttpServletRequest req, HttpServletResponse res) {
+        Long userId = this.getUserId(req);
+        userService.sendCVEmail(userId);
+
+        ServletUtils.toJson(req, res);
+    }
 
 }
