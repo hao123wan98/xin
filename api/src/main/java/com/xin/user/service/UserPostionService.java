@@ -72,7 +72,7 @@ public class UserPostionService {
      */
     public void requestPostion(Long userId, Long posId) {
         // 先判断个人信息是否完善
-        
+
     }
 
 

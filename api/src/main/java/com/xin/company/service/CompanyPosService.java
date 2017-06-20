@@ -53,7 +53,7 @@ public class CompanyPosService extends BaseService {
     public void setPostion(Long userId, TCompanyPostion postion) {
         Long companyId = this.getCompanyId(userId);
 
-        if (postion.getTid() == null && postion.getTid() > 0) {
+        if (postion.getTid() == null) {
             if (this.isEmptyValue(postion.getName())) {
                 throw new ToUserException("职位名称不能为空", null);
             }

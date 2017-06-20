@@ -4,8 +4,10 @@ import com.xin.common.BaseService;
 import com.xin.db.dao.TLoginUserMapper;
 import com.xin.db.entity.TLoginUser;
 import com.xin.db.entity.TLoginUserExample;
-import com.xin.system.SystemService;
+import com.xin.system.service.SystemService;
 import com.xin.user.dao.LoginOKVO;
+import com.xin.webservice.EmailClient;
+import com.xin.webservice.EmailSendAccountVO;
 import com.xin.webservice.SMSClient;
 import com.zhenhr.common.ParameterException;
 import com.zhenhr.common.TPErrorCodeGeneral;
@@ -14,6 +16,7 @@ import com.zhenhr.tools.Base64;
 import com.zhenhr.tools.ObjectUtils;
 import com.zhenhr.tools.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,6 +27,9 @@ import java.util.List;
  */
 @Service
 public class UserService extends BaseService {
+    @Autowired
+    private Environment env;
+
     @Autowired
     TLoginUserMapper userMapper;
 
@@ -297,16 +303,52 @@ public class UserService extends BaseService {
 
     }
 
+    public void update(TLoginUser user) {
+        userMapper.updateByPrimaryKey(user);
+    }
+
+
     /**
      * 发送个人简历
      *
      * @param userId
      */
-    public void sendCVEmail(Long userId) {
-        String str = RandomUtils.generateNumber(4) + userId;
-        String base64 = Base64.encode(str.getBytes());
+    public String sendCVEmail(Long userId) {
+        TLoginUser user = this.get(userId);
+        if (this.isEmptyValue(user.getEmail())) {
+            throw new ToUserException("请先去完善个人信息添加邮箱信息", "");
+        }
 
+        String str = RandomUtils.generateNumber(4) + userId;
+        String code = Base64.encode(str);
+
+        String host = env.getProperty("host") + env.getProperty("cv_outer_url") + "?key=" + code;
+        System.out.println("host:" + host);
+
+        EmailSendAccountVO accountVO = systemService.getSysEmailAccount();
+        try {
+            EmailClient.sendMail(accountVO, "完善个人简历", host, user.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
+
+    public Long codeToUserId(String code) {
+        String str = Base64.decodeStr(code);
+        return Long.valueOf(str.substring(4));
 
     }
+
+
+//    public static void main(String[] args) {
+//        UserService s = new UserService();
+//        String code = s.sendCVEmail(1223232323l);
+//        System.out.println(code);
+//        Long userId = s.codeToUserId(code);
+//        System.out.println(userId);
+//
+//
+//    }
 
 }

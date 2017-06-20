@@ -81,7 +81,7 @@ public class CompanyTest extends BaseTestController {
 
     }
 
-    @Test
+//    @Test
     public void postionSet() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders

@@ -118,6 +118,9 @@ public class COSClientService {
         }
     }
 
+    public static void deleFile(String path) {
+
+    }
 
     /**
      * 创建path

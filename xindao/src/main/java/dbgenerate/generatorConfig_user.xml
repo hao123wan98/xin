@@ -2,67 +2,68 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-    <classPathEntry
-            location="/Volumes/work/software/java_generate/mysql-connector-java-5.1.20.jar"/>
-    <classPathEntry
-            location="/Volumes/work/software/java_generate/mybatis-generator-maven-plugin-1.3.2.jar"/>
-    <classPathEntry
-            location="/Volumes/work/software/java_generate/pagineation_plugin.jar"/>
+	<classPathEntry
+		location="/Volumes/work/software/java_generate/mysql-connector-java-5.1.20.jar" />
+	<classPathEntry
+		location="/Volumes/work/software/java_generate/mybatis-generator-maven-plugin-1.3.2.jar" />
+	<classPathEntry
+		location="/Volumes/work/software/java_generate/pagineation_plugin.jar" />
 
-    <context id="DB2Tables" targetRuntime="MyBatis3">
-        <!-- 这个插件添加equals() hashcode()方法生成的模型和类。 -->
-        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
-        <!-- <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<!-- 这个插件添加equals() hashcode()方法生成的模型和类。 -->
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<!-- <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
 
-        <!-- 分页插件 -->
-        <plugin type="com.xin.db.common.MySQLPagePlugin"/>
+		<!-- 分页插件 -->
+		<plugin type="com.xin.db.common.MySQLPagePlugin" />
 
-        <!-- -->
-        <commentGenerator>
-            <property name="suppressAllComments" value="true"/>
-        </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://5816cb0842ad8.bj.cdb.myqcloud.com:4360/xin_db"
-                        userId="zhenhr_master" password="zhenhr001">
-        </jdbcConnection>
+		<!-- -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://5816cb0842ad8.bj.cdb.myqcloud.com:4360/xin_db"
+			userId="zhenhr_master" password="zhenhr001">
+		</jdbcConnection>
 
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.xin.db.entity"
-                            targetProject="xindao">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
+		<javaModelGenerator targetPackage="com.xin.db.entity"
+			targetProject="xindao">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.xin.db.mapper"
-                         targetProject="xindao">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
+		<sqlMapGenerator targetPackage="com.xin.db.mapper"
+			targetProject="xindao">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.xin.db.dao" targetProject="xindao">
-            <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
-
-
-        <table tableName="t_smslog" domainObjectName="TSMSLog"/>
-        <table tableName="t_piccode" domainObjectName="TPicCode"/>
-        <table tableName="t_user" domainObjectName="TLoginUser">
-            <generatedKey column="user_id" sqlStatement="Mysql"
-                          identity="true" type="post"/>
-        </table>
-        <table tableName="t_user_postion" domainObjectName="TUserPostion"/>
-
-        <table tableName="t_company" domainObjectName="TCompany">
-            <generatedKey column="company_id" sqlStatement="Mysql"
-                          identity="true" type="post"/>
-        </table>
-        <table tableName="t_company_postion" domainObjectName="TCompanyPostion"/>
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.xin.db.dao" targetProject="xindao">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
 
 
-    </context>
+		<table tableName="t_smslog" domainObjectName="TSMSLog" />
+		<table tableName="t_piccode" domainObjectName="TPicCode" />
+		<table tableName="t_user" domainObjectName="TLoginUser">
+			<generatedKey column="user_id" sqlStatement="Mysql"
+				identity="true" type="post" />
+		</table>
+		<table tableName="t_user_postion" domainObjectName="TUserPostion" />
+
+		<table tableName="t_company" domainObjectName="TCompany">
+			<generatedKey column="company_id" sqlStatement="Mysql"
+				identity="true" type="post" />
+		</table>
+		<table tableName="t_company_postion" domainObjectName="TCompanyPostion" />
+		<table tableName="t_user_work_history" domainObjectName="TUserWorkHistory" />
+
+
+	</context>
 </generatorConfiguration>

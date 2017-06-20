@@ -5,7 +5,6 @@ package com.xin.user.controller;
 
 import com.xin.common.BaseController;
 import com.xin.db.entity.TLoginUser;
-import com.xin.system.SystemService;
 import com.xin.user.dao.LoginOKVO;
 import com.xin.user.service.UserService;
 import com.zhenhr.tools.ServletUtils;
@@ -22,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController extends BaseController {
     @Autowired
     UserService userService;
-    @Autowired
-    SystemService systemService;
 
 
     /**

@@ -3,7 +3,7 @@ package com.xin.user.controller;
 import com.xin.common.BaseController;
 import com.xin.db.entity.TUserWorkHistory;
 import com.xin.user.dao.UserCVInfoVO;
-import com.xin.user.service.UserCVService;
+import com.xin.user.service.UserCVOuterService;
 import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,23 +14,25 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by guoyongshi on 17/6/2.
+ * 外部完善简历
  */
 
 @Controller
-@RequestMapping(value = "user/cv")
-public class ResumeController extends BaseController {
+@RequestMapping(value = "user/cv/outer")
+public class ResumeOuterController extends BaseController {
     @Autowired
-    UserCVService userCVService;
+    UserCVOuterService cvOuterService;
 
     /**
      * 获取简历详情
      *
      * @param req
      * @param res
+     * @param code
      */
     @RequestMapping(value = "info")
-    public void info(HttpServletRequest req, HttpServletResponse res) {
-        UserCVInfoVO vo = userCVService.getCVInfo(this.getUserId(req));
+    public void info(HttpServletRequest req, HttpServletResponse res, String code) {
+        UserCVInfoVO vo = cvOuterService.getCVInfo(code);
         ServletUtils.toJson(vo, req, res);
     }
 
@@ -43,7 +45,7 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "basic/get")
     public void basicGet(HttpServletRequest req, HttpServletResponse res, String code) {
-        UserCVInfoVO vo = userCVService.getCVBsic(this.getUserId(req));
+        UserCVInfoVO vo = cvOuterService.getCVBsic(code);
         ServletUtils.toJson(vo, req, res);
     }
 
@@ -57,7 +59,7 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "basic/set")
     public void basicSet(HttpServletRequest req, HttpServletResponse res, String code, UserCVInfoVO obj) {
-        userCVService.updateCVBase(this.getUserId(req), obj);
+        cvOuterService.updateCVBase(code, obj);
         ServletUtils.toJson(req, res);
     }
 
@@ -70,7 +72,7 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "workhistory/list")
     public void workhistoryList(HttpServletRequest req, HttpServletResponse res, String code) {
-        ServletUtils.toJson(userCVService.getCVWorkHistoryList(this.getUserId(req)), req, res);
+        ServletUtils.toJson(cvOuterService.getCVWorkHistoryList(code), req, res);
     }
 
     /**
@@ -83,7 +85,7 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "workhistory/get")
     public void workhistorySet(HttpServletRequest req, HttpServletResponse res, String code, Long tid) {
-        ServletUtils.toJson(userCVService.getWorkHistory(this.getUserId(req), tid), req, res);
+        ServletUtils.toJson(cvOuterService.getWorkHistory(code, tid), req, res);
     }
 
     /**
@@ -96,7 +98,7 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "workhistory/set")
     public void workhistorySet(HttpServletRequest req, HttpServletResponse res, String code, TUserWorkHistory obj) {
-        userCVService.setWorkHistory(this.getUserId(req), obj);
+        cvOuterService.setWorkHistory(code, obj);
         ServletUtils.toJson(req, res);
     }
 
@@ -110,8 +112,21 @@ public class ResumeController extends BaseController {
      */
     @RequestMapping(value = "workhistory/del")
     public void workhistoryDel(HttpServletRequest req, HttpServletResponse res, String code, Long tid) {
-        userCVService.delWorkHistory(this.getUserId(req), tid);
+        cvOuterService.delWorkHistory(code, tid);
         ServletUtils.toJson(req, res);
+    }
+
+
+    /**
+     * 简历上传
+     *
+     * @param req
+     * @param res
+     */
+    @RequestMapping(value = "file/upload")
+    public void fileUpload(HttpServletRequest req, HttpServletResponse res, String code, String cvPath) {
+        Long userId = this.getUserId(req);
+        cvOuterService.cvUpload(code, cvPath);
     }
 
 

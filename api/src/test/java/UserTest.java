@@ -1,4 +1,5 @@
 import com.xin.user.controller.UserController;
+import com.xin.user.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 //@WebMvcTest(controllers = UserController.class)
 public class UserTest extends BaseTestController {
+
     @Test
     public void Test() {
 
@@ -31,7 +33,7 @@ public class UserTest extends BaseTestController {
 
     }
 
-    //    @Test
+    //        @Test
     public void register() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
@@ -74,10 +76,23 @@ public class UserTest extends BaseTestController {
     public void setInfo() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-                .post("/user/set");
+                .post("/user/info/set");
         mockRequest.header("token", this.token);
         mockRequest.param("gender", "1");
         mockRequest.param("name", "sgy");
+        mockRequest.param("email", "guoyong.shi@zhenhr.com");
+
+        MvcResult result = mockMvc.perform(mockRequest)
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+    }
+
+    //    @Test
+    public void sendCVEmail() throws Exception {
+
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+                .post("/user/send/cvmail");
+        mockRequest.header("token", this.token);
 
         MvcResult result = mockMvc.perform(mockRequest)
                 .andDo(MockMvcResultHandlers.print()).andReturn();
