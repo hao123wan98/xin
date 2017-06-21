@@ -10,6 +10,8 @@ public class TLoginUser implements Serializable {
 
     private String name;
 
+    private String avatar;
+
     private String gender;
 
     private String birthday;
@@ -31,6 +33,8 @@ public class TLoginUser implements Serializable {
     private String lastSalary;
 
     private String cvPath;
+
+    private String degreeTop;
 
     private String openid;
 
@@ -66,6 +70,14 @@ public class TLoginUser implements Serializable {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
     }
 
     public String getGender() {
@@ -156,6 +168,14 @@ public class TLoginUser implements Serializable {
         this.cvPath = cvPath == null ? null : cvPath.trim();
     }
 
+    public String getDegreeTop() {
+        return degreeTop;
+    }
+
+    public void setDegreeTop(String degreeTop) {
+        this.degreeTop = degreeTop == null ? null : degreeTop.trim();
+    }
+
     public String getOpenid() {
         return openid;
     }
@@ -211,6 +231,7 @@ public class TLoginUser implements Serializable {
         return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getAvatar() == null ? other.getAvatar() == null : this.getAvatar().equals(other.getAvatar()))
             && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
             && (this.getBirthday() == null ? other.getBirthday() == null : this.getBirthday().equals(other.getBirthday()))
             && (this.getOrigo() == null ? other.getOrigo() == null : this.getOrigo().equals(other.getOrigo()))
@@ -222,6 +243,7 @@ public class TLoginUser implements Serializable {
             && (this.getLastCompanyPos() == null ? other.getLastCompanyPos() == null : this.getLastCompanyPos().equals(other.getLastCompanyPos()))
             && (this.getLastSalary() == null ? other.getLastSalary() == null : this.getLastSalary().equals(other.getLastSalary()))
             && (this.getCvPath() == null ? other.getCvPath() == null : this.getCvPath().equals(other.getCvPath()))
+            && (this.getDegreeTop() == null ? other.getDegreeTop() == null : this.getDegreeTop().equals(other.getDegreeTop()))
             && (this.getOpenid() == null ? other.getOpenid() == null : this.getOpenid().equals(other.getOpenid()))
             && (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()))
             && (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
@@ -236,6 +258,7 @@ public class TLoginUser implements Serializable {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getAvatar() == null) ? 0 : getAvatar().hashCode());
         result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
         result = prime * result + ((getBirthday() == null) ? 0 : getBirthday().hashCode());
         result = prime * result + ((getOrigo() == null) ? 0 : getOrigo().hashCode());
@@ -247,6 +270,7 @@ public class TLoginUser implements Serializable {
         result = prime * result + ((getLastCompanyPos() == null) ? 0 : getLastCompanyPos().hashCode());
         result = prime * result + ((getLastSalary() == null) ? 0 : getLastSalary().hashCode());
         result = prime * result + ((getCvPath() == null) ? 0 : getCvPath().hashCode());
+        result = prime * result + ((getDegreeTop() == null) ? 0 : getDegreeTop().hashCode());
         result = prime * result + ((getOpenid() == null) ? 0 : getOpenid().hashCode());
         result = prime * result + ((getToken() == null) ? 0 : getToken().hashCode());
         result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());

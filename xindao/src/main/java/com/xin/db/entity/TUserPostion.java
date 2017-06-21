@@ -14,6 +14,8 @@ public class TUserPostion implements Serializable {
 
     private String reviewState;
 
+    private Date reviewTime;
+
     private Date createTime;
 
     private String state;
@@ -60,6 +62,14 @@ public class TUserPostion implements Serializable {
         this.reviewState = reviewState == null ? null : reviewState.trim();
     }
 
+    public Date getReviewTime() {
+        return reviewTime;
+    }
+
+    public void setReviewTime(Date reviewTime) {
+        this.reviewTime = reviewTime;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -93,6 +103,7 @@ public class TUserPostion implements Serializable {
             && (this.getPostionId() == null ? other.getPostionId() == null : this.getPostionId().equals(other.getPostionId()))
             && (this.getCompanyId() == null ? other.getCompanyId() == null : this.getCompanyId().equals(other.getCompanyId()))
             && (this.getReviewState() == null ? other.getReviewState() == null : this.getReviewState().equals(other.getReviewState()))
+            && (this.getReviewTime() == null ? other.getReviewTime() == null : this.getReviewTime().equals(other.getReviewTime()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
     }
@@ -106,6 +117,7 @@ public class TUserPostion implements Serializable {
         result = prime * result + ((getPostionId() == null) ? 0 : getPostionId().hashCode());
         result = prime * result + ((getCompanyId() == null) ? 0 : getCompanyId().hashCode());
         result = prime * result + ((getReviewState() == null) ? 0 : getReviewState().hashCode());
+        result = prime * result + ((getReviewTime() == null) ? 0 : getReviewTime().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         return result;

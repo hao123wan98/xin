@@ -73,7 +73,7 @@ public class DateUtil {
     /**
      * 根据日期获取星座
      *
-     * @param time
+     * @param date
      * @return
      */
     public static List<String> getNowWeekDay(String date) {
@@ -176,7 +176,7 @@ public class DateUtil {
     /**
      * 根据日期获取星座
      *
-     * @param time
+     * @param d
      * @return
      */
     public static String date2Constellation(Date d) {
@@ -1371,8 +1371,21 @@ public class DateUtil {
         return "5天前";
     }
 
+    /**
+     * 到现在的年限
+     *
+     * @param startDate
+     * @return
+     */
+    public static Integer yearsToNow(String startDate) {
+        startDate = startDate.replace("/", "-");
+        int y1 = year(startDate);
+        int y2 = year();
+        return y2 - y1;
+    }
+
     public static void main(String[] args) {
-        int week = DateUtil.workDaysToMonthEndDay("2017-02-2");
+        int week = DateUtil.yearsToNow("2016/07");
         System.out.println("" + week);
 
     }

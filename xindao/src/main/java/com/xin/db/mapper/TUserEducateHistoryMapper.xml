@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xin.db.dao.TUserPostionMapper" >
-  <resultMap id="BaseResultMap" type="com.xin.db.entity.TUserPostion" >
+<mapper namespace="com.xin.db.dao.TUserEducateHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.xin.db.entity.TUserEducateHistory" >
     <id column="tid" property="tid" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="postion_id" property="postionId" jdbcType="BIGINT" />
-    <result column="company_id" property="companyId" jdbcType="BIGINT" />
-    <result column="review_state" property="reviewState" jdbcType="CHAR" />
-    <result column="review_time" property="reviewTime" jdbcType="TIMESTAMP" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="CHAR" />
   </resultMap>
@@ -70,15 +72,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    tid, user_id, postion_id, company_id, review_state, review_time, create_time, state
+    tid, user_id, school, major, degree, start_date, end_date, result, create_time, state
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xin.db.entity.TUserPostionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xin.db.entity.TUserEducateHistoryExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user_postion
+    from t_user_educate_history
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,29 +94,31 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_user_postion
+    from t_user_educate_history
     where tid = #{tid,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_user_postion
+    delete from t_user_educate_history
     where tid = #{tid,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xin.db.entity.TUserPostionExample" >
-    delete from t_user_postion
+  <delete id="deleteByExample" parameterType="com.xin.db.entity.TUserEducateHistoryExample" >
+    delete from t_user_educate_history
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xin.db.entity.TUserPostion" >
-    insert into t_user_postion (tid, user_id, postion_id, 
-      company_id, review_state, review_time, 
-      create_time, state)
-    values (#{tid,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{postionId,jdbcType=BIGINT}, 
-      #{companyId,jdbcType=BIGINT}, #{reviewState,jdbcType=CHAR}, #{reviewTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR})
+  <insert id="insert" parameterType="com.xin.db.entity.TUserEducateHistory" >
+    insert into t_user_educate_history (tid, user_id, school, 
+      major, degree, start_date, 
+      end_date, result, create_time, 
+      state)
+    values (#{tid,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{school,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, 
+      #{endDate,jdbcType=VARCHAR}, #{result,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xin.db.entity.TUserPostion" >
-    insert into t_user_postion
+  <insert id="insertSelective" parameterType="com.xin.db.entity.TUserEducateHistory" >
+    insert into t_user_educate_history
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="tid != null" >
         tid,
@@ -122,17 +126,23 @@
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="postionId != null" >
-        postion_id,
+      <if test="school != null" >
+        school,
       </if>
-      <if test="companyId != null" >
-        company_id,
+      <if test="major != null" >
+        major,
       </if>
-      <if test="reviewState != null" >
-        review_state,
+      <if test="degree != null" >
+        degree,
       </if>
-      <if test="reviewTime != null" >
-        review_time,
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="result != null" >
+        result,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -148,17 +158,23 @@
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
       </if>
-      <if test="postionId != null" >
-        #{postionId,jdbcType=BIGINT},
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null" >
-        #{companyId,jdbcType=BIGINT},
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
       </if>
-      <if test="reviewState != null" >
-        #{reviewState,jdbcType=CHAR},
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
       </if>
-      <if test="reviewTime != null" >
-        #{reviewTime,jdbcType=TIMESTAMP},
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=CHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -168,14 +184,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xin.db.entity.TUserPostionExample" resultType="java.lang.Integer" >
-    select count(*) from t_user_postion
+  <select id="countByExample" parameterType="com.xin.db.entity.TUserEducateHistoryExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_educate_history
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user_postion
+    update t_user_educate_history
     <set >
       <if test="record.tid != null" >
         tid = #{record.tid,jdbcType=BIGINT},
@@ -183,17 +199,23 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
-      <if test="record.postionId != null" >
-        postion_id = #{record.postionId,jdbcType=BIGINT},
+      <if test="record.school != null" >
+        school = #{record.school,jdbcType=VARCHAR},
       </if>
-      <if test="record.companyId != null" >
-        company_id = #{record.companyId,jdbcType=BIGINT},
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewState != null" >
-        review_state = #{record.reviewState,jdbcType=CHAR},
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewTime != null" >
-        review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=CHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -207,36 +229,44 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user_postion
+    update t_user_educate_history
     set tid = #{record.tid,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=BIGINT},
-      postion_id = #{record.postionId,jdbcType=BIGINT},
-      company_id = #{record.companyId,jdbcType=BIGINT},
-      review_state = #{record.reviewState,jdbcType=CHAR},
-      review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      school = #{record.school,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=VARCHAR},
+      end_date = #{record.endDate,jdbcType=VARCHAR},
+      result = #{record.result,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       state = #{record.state,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xin.db.entity.TUserPostion" >
-    update t_user_postion
+  <update id="updateByPrimaryKeySelective" parameterType="com.xin.db.entity.TUserEducateHistory" >
+    update t_user_educate_history
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
       </if>
-      <if test="postionId != null" >
-        postion_id = #{postionId,jdbcType=BIGINT},
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null" >
-        company_id = #{companyId,jdbcType=BIGINT},
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
       </if>
-      <if test="reviewState != null" >
-        review_state = #{reviewState,jdbcType=CHAR},
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
       </if>
-      <if test="reviewTime != null" >
-        review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=CHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -247,13 +277,15 @@
     </set>
     where tid = #{tid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xin.db.entity.TUserPostion" >
-    update t_user_postion
+  <update id="updateByPrimaryKey" parameterType="com.xin.db.entity.TUserEducateHistory" >
+    update t_user_educate_history
     set user_id = #{userId,jdbcType=BIGINT},
-      postion_id = #{postionId,jdbcType=BIGINT},
-      company_id = #{companyId,jdbcType=BIGINT},
-      review_state = #{reviewState,jdbcType=CHAR},
-      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      result = #{result,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=CHAR}
     where tid = #{tid,jdbcType=BIGINT}

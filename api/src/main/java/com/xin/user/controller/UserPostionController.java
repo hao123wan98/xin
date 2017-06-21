@@ -3,6 +3,7 @@ package com.xin.user.controller;
 import com.xin.common.BaseController;
 import com.xin.common.ListPageVO;
 import com.xin.db.common.Page;
+import com.xin.db.entity.TUserPostion;
 import com.xin.user.dao.SearchPosObj;
 import com.xin.user.service.UserPostionService;
 import com.zhenhr.tools.ServletUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by guoyongshi on 17/6/2.
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-@RequestMapping(value = "postions")
+@RequestMapping(value = "user/postions")
 public class UserPostionController extends BaseController {
     @Autowired
     UserPostionService userPostionService;
@@ -65,6 +67,19 @@ public class UserPostionController extends BaseController {
         userPostionService.requestPostion(userId, postionId);
 
         ServletUtils.toJson(req, res);
+    }
+
+    /**
+     * 应聘历史记录
+     *
+     * @param req
+     * @param res
+     */
+    @RequestMapping(value = "history")
+    public void history(HttpServletRequest req, HttpServletResponse res) {
+        Long userId = this.getUserId(req);
+        List<TUserPostion> list = userPostionService.history(userId);
+        ServletUtils.toJson(list, req, res);
     }
 
 

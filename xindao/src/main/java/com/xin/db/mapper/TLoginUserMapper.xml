@@ -5,6 +5,7 @@
     <id column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="birthday" property="birthday" jdbcType="VARCHAR" />
     <result column="origo" property="origo" jdbcType="VARCHAR" />
@@ -16,6 +17,7 @@
     <result column="last_company_pos" property="lastCompanyPos" jdbcType="VARCHAR" />
     <result column="last_salary" property="lastSalary" jdbcType="VARCHAR" />
     <result column="cv_path" property="cvPath" jdbcType="VARCHAR" />
+    <result column="degree_top" property="degreeTop" jdbcType="VARCHAR" />
     <result column="openid" property="openid" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="role" property="role" jdbcType="CHAR" />
@@ -81,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, pwd, name, gender, birthday, origo, mobile, email, wechat, work_start_date, 
-    last_company_name, last_company_pos, last_salary, cv_path, openid, token, role, create_time, 
-    state
+    user_id, pwd, name, avatar, gender, birthday, origo, mobile, email, wechat, work_start_date, 
+    last_company_name, last_company_pos, last_salary, cv_path, degree_top, openid, token, 
+    role, create_time, state
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xin.db.entity.TLoginUserExample" >
     select
@@ -122,20 +124,20 @@
     <selectKey resultType="java.lang.Long" keyProperty="userId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into t_user (pwd, name, gender, 
-      birthday, origo, mobile, 
-      email, wechat, work_start_date, 
-      last_company_name, last_company_pos, last_salary, 
-      cv_path, openid, token, 
-      role, create_time, state
-      )
-    values (#{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{birthday,jdbcType=VARCHAR}, #{origo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{workStartDate,jdbcType=VARCHAR}, 
-      #{lastCompanyName,jdbcType=VARCHAR}, #{lastCompanyPos,jdbcType=VARCHAR}, #{lastSalary,jdbcType=VARCHAR}, 
-      #{cvPath,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
-      #{role,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}
-      )
+    insert into t_user (pwd, name, avatar, 
+      gender, birthday, origo, 
+      mobile, email, wechat, 
+      work_start_date, last_company_name, last_company_pos, 
+      last_salary, cv_path, degree_top, 
+      openid, token, role, create_time, 
+      state)
+    values (#{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, #{origo,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{workStartDate,jdbcType=VARCHAR}, #{lastCompanyName,jdbcType=VARCHAR}, #{lastCompanyPos,jdbcType=VARCHAR}, 
+      #{lastSalary,jdbcType=VARCHAR}, #{cvPath,jdbcType=VARCHAR}, #{degreeTop,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{role,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xin.db.entity.TLoginUser" >
     <selectKey resultType="java.lang.Long" keyProperty="userId" order="AFTER" >
@@ -148,6 +150,9 @@
       </if>
       <if test="name != null" >
         name,
+      </if>
+      <if test="avatar != null" >
+        avatar,
       </if>
       <if test="gender != null" >
         gender,
@@ -182,6 +187,9 @@
       <if test="cvPath != null" >
         cv_path,
       </if>
+      <if test="degreeTop != null" >
+        degree_top,
+      </if>
       <if test="openid != null" >
         openid,
       </if>
@@ -204,6 +212,9 @@
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
         #{gender,jdbcType=CHAR},
@@ -237,6 +248,9 @@
       </if>
       <if test="cvPath != null" >
         #{cvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeTop != null" >
+        #{degreeTop,jdbcType=VARCHAR},
       </if>
       <if test="openid != null" >
         #{openid,jdbcType=VARCHAR},
@@ -273,6 +287,9 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.avatar != null" >
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
       <if test="record.gender != null" >
         gender = #{record.gender,jdbcType=CHAR},
       </if>
@@ -306,6 +323,9 @@
       <if test="record.cvPath != null" >
         cv_path = #{record.cvPath,jdbcType=VARCHAR},
       </if>
+      <if test="record.degreeTop != null" >
+        degree_top = #{record.degreeTop,jdbcType=VARCHAR},
+      </if>
       <if test="record.openid != null" >
         openid = #{record.openid,jdbcType=VARCHAR},
       </if>
@@ -331,6 +351,7 @@
     set user_id = #{record.userId,jdbcType=BIGINT},
       pwd = #{record.pwd,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=CHAR},
       birthday = #{record.birthday,jdbcType=VARCHAR},
       origo = #{record.origo,jdbcType=VARCHAR},
@@ -342,6 +363,7 @@
       last_company_pos = #{record.lastCompanyPos,jdbcType=VARCHAR},
       last_salary = #{record.lastSalary,jdbcType=VARCHAR},
       cv_path = #{record.cvPath,jdbcType=VARCHAR},
+      degree_top = #{record.degreeTop,jdbcType=VARCHAR},
       openid = #{record.openid,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       role = #{record.role,jdbcType=CHAR},
@@ -359,6 +381,9 @@
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
         gender = #{gender,jdbcType=CHAR},
@@ -393,6 +418,9 @@
       <if test="cvPath != null" >
         cv_path = #{cvPath,jdbcType=VARCHAR},
       </if>
+      <if test="degreeTop != null" >
+        degree_top = #{degreeTop,jdbcType=VARCHAR},
+      </if>
       <if test="openid != null" >
         openid = #{openid,jdbcType=VARCHAR},
       </if>
@@ -415,6 +443,7 @@
     update t_user
     set pwd = #{pwd,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=CHAR},
       birthday = #{birthday,jdbcType=VARCHAR},
       origo = #{origo,jdbcType=VARCHAR},
@@ -426,6 +455,7 @@
       last_company_pos = #{lastCompanyPos,jdbcType=VARCHAR},
       last_salary = #{lastSalary,jdbcType=VARCHAR},
       cv_path = #{cvPath,jdbcType=VARCHAR},
+      degree_top = #{degreeTop,jdbcType=VARCHAR},
       openid = #{openid,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       role = #{role,jdbcType=CHAR},

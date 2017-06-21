@@ -316,6 +316,76 @@ public class TLoginUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andAvatarIsNull() {
+            addCriterion("avatar is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarIsNotNull() {
+            addCriterion("avatar is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarEqualTo(String value) {
+            addCriterion("avatar =", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarNotEqualTo(String value) {
+            addCriterion("avatar <>", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarGreaterThan(String value) {
+            addCriterion("avatar >", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarGreaterThanOrEqualTo(String value) {
+            addCriterion("avatar >=", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarLessThan(String value) {
+            addCriterion("avatar <", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarLessThanOrEqualTo(String value) {
+            addCriterion("avatar <=", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarLike(String value) {
+            addCriterion("avatar like", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarNotLike(String value) {
+            addCriterion("avatar not like", value, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarIn(List<String> values) {
+            addCriterion("avatar in", values, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarNotIn(List<String> values) {
+            addCriterion("avatar not in", values, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarBetween(String value1, String value2) {
+            addCriterion("avatar between", value1, value2, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarNotBetween(String value1, String value2) {
+            addCriterion("avatar not between", value1, value2, "avatar");
+            return (Criteria) this;
+        }
+
         public Criteria andGenderIsNull() {
             addCriterion("gender is null");
             return (Criteria) this;
@@ -1086,6 +1156,76 @@ public class TLoginUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andDegreeTopIsNull() {
+            addCriterion("degree_top is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopIsNotNull() {
+            addCriterion("degree_top is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopEqualTo(String value) {
+            addCriterion("degree_top =", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopNotEqualTo(String value) {
+            addCriterion("degree_top <>", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopGreaterThan(String value) {
+            addCriterion("degree_top >", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopGreaterThanOrEqualTo(String value) {
+            addCriterion("degree_top >=", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopLessThan(String value) {
+            addCriterion("degree_top <", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopLessThanOrEqualTo(String value) {
+            addCriterion("degree_top <=", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopLike(String value) {
+            addCriterion("degree_top like", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopNotLike(String value) {
+            addCriterion("degree_top not like", value, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopIn(List<String> values) {
+            addCriterion("degree_top in", values, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopNotIn(List<String> values) {
+            addCriterion("degree_top not in", values, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopBetween(String value1, String value2) {
+            addCriterion("degree_top between", value1, value2, "degreeTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeTopNotBetween(String value1, String value2) {
+            addCriterion("degree_top not between", value1, value2, "degreeTop");
+            return (Criteria) this;
+        }
+
         public Criteria andOpenidIsNull() {
             addCriterion("openid is null");
             return (Criteria) this;
@@ -1443,6 +1583,11 @@ public class TLoginUserExample {
             return this;
         }
 
+        public Criteria andAvatarLikeInsensitive(String value) {
+            addCriterion("upper(avatar) like", value.toUpperCase(), "avatar");
+            return this;
+        }
+
         public Criteria andGenderLikeInsensitive(String value) {
             addCriterion("upper(gender) like", value.toUpperCase(), "gender");
             return this;
@@ -1495,6 +1640,11 @@ public class TLoginUserExample {
 
         public Criteria andCvPathLikeInsensitive(String value) {
             addCriterion("upper(cv_path) like", value.toUpperCase(), "cvPath");
+            return this;
+        }
+
+        public Criteria andDegreeTopLikeInsensitive(String value) {
+            addCriterion("upper(degree_top) like", value.toUpperCase(), "degreeTop");
             return this;
         }
 

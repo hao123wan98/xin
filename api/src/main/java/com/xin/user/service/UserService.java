@@ -280,6 +280,10 @@ public class UserService extends BaseService {
         tokenService.deleteToken(token);
     }
 
+    /**
+     * 设置个人信息
+     * @param user
+     */
     public void set(TLoginUser user) {
         TLoginUser old = userMapper.selectByPrimaryKey(user.getUserId());
         ObjectUtils.mergeSameClassValue(user, old);
@@ -287,10 +291,16 @@ public class UserService extends BaseService {
     }
 
 
+    /**
+     *  获取个人信息
+     * @param userId
+     * @return
+     */
     public TLoginUser get(Long userId) {
         return userMapper.selectByPrimaryKey(userId);
     }
 
+    
 
     public void roleSwitch(Long userId, String role) {
         TLoginUser user = this.get(userId);
