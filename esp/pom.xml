@@ -3,27 +3,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.xin</groupId>
-    <artifactId>group</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>esp</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
-    <name>group</name>
+    <name>esp</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <modules>
-        <module>../zhenhrtools</module>
-        <module>../xindao</module>
-        <module>../api</module>
-        <module>../esp</module>
-
-    </modules>
-
-
     <dependencies>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
