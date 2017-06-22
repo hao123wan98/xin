@@ -18,7 +18,6 @@
         <module>../zhenhrtools</module>
         <module>../xindao</module>
         <module>../api</module>
-        <module>../esp</module>
 
     </modules>
 

@@ -64,6 +64,7 @@
 		<table tableName="t_company_postion" domainObjectName="TCompanyPostion" />
 		<table tableName="t_user_work_history" domainObjectName="TUserWorkHistory" />
 		<table tableName="t_user_educate_history" domainObjectName="TUserEducateHistory" />
+		<table tableName="m_users" domainObjectName="mUsers" />
 
 
 	</context>

@@ -55,6 +55,8 @@ public class ControllerInterceptor implements HandlerInterceptor {
 
         regexBuf.append("|(index)");
 
+        regexBuf.append("|(muser/login)");
+
 
         // 后置 例如：?name=admin&pwd=123456
         regexBuf.append(")(\\?(.)*)?");
