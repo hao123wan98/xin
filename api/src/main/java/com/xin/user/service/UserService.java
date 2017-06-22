@@ -282,6 +282,7 @@ public class UserService extends BaseService {
 
     /**
      * 设置个人信息
+     *
      * @param user
      */
     public void set(TLoginUser user) {
@@ -292,7 +293,8 @@ public class UserService extends BaseService {
 
 
     /**
-     *  获取个人信息
+     * 获取个人信息
+     *
      * @param userId
      * @return
      */
@@ -300,7 +302,6 @@ public class UserService extends BaseService {
         return userMapper.selectByPrimaryKey(userId);
     }
 
-    
 
     public void roleSwitch(Long userId, String role) {
         TLoginUser user = this.get(userId);

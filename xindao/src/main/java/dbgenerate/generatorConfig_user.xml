@@ -56,6 +56,7 @@
 				identity="true" type="post" />
 		</table>
 		<table tableName="t_user_postion" domainObjectName="TUserPostion" />
+		<table tableName="t_token" domainObjectName="TToken" />
 
 		<table tableName="t_company" domainObjectName="TCompany">
 			<generatedKey column="company_id" sqlStatement="Mysql"
@@ -64,6 +65,7 @@
 		<table tableName="t_company_postion" domainObjectName="TCompanyPostion" />
 		<table tableName="t_user_work_history" domainObjectName="TUserWorkHistory" />
 		<table tableName="t_user_educate_history" domainObjectName="TUserEducateHistory" />
+
 		<table tableName="m_users" domainObjectName="mUsers" />
 
 

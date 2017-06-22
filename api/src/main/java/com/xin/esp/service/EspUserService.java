@@ -64,7 +64,7 @@ public class EspUserService extends BaseService {
             throw new ToUserException("您的账户已经被停用！", null);
         }
 
-        String token = tokenService.generateToken("" + user.getTid());
+        String token = tokenService.generateToken(Long.valueOf(user.getTid()));
 
         LoginOKVO vo = new LoginOKVO();
         vo.setToken(token);
@@ -101,7 +101,7 @@ public class EspUserService extends BaseService {
         userMapper.updateByPrimaryKey(user);
 
         // 重新生成token
-        String token = tokenService.generateToken("" + user.getTid());
+        String token = tokenService.generateToken(Long.valueOf(user.getTid()));
 
         LoginOKVO vo = new LoginOKVO();
         vo.setToken(token);

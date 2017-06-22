@@ -2,13 +2,17 @@ package com.xin.user.service;
 
 import com.xin.common.BaseService;
 import com.xin.db.dao.TLoginUserMapper;
+import com.xin.db.dao.TTokenMapper;
 import com.xin.db.entity.TLoginUser;
 import com.xin.db.entity.TLoginUserExample;
+import com.xin.db.entity.TToken;
+import com.xin.db.entity.TTokenExample;
 import com.zhenhr.tools.HmacshaUtils;
 import com.zhenhr.tools.PropertiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +21,7 @@ public class TokenService extends BaseService {
     private static int expireSecond = 0;
 
     @Autowired
-    TLoginUserMapper userMapper;
+    TTokenMapper tokenMapper;
 
     /**
      * 生成Token
@@ -29,13 +33,7 @@ public class TokenService extends BaseService {
         String tmp = UUID.randomUUID().toString().replaceAll("-", "");
         String token = HmacshaUtils.getToken("xin", tmp, 1);
 
-        return token;
-    }
-
-    public String generateToken(String value) {
-        String tmp = UUID.randomUUID().toString().replaceAll("-", "");
-        String token = HmacshaUtils.getToken("xin", tmp, 1);
-
+        this.insertToDB(token, userId);
         return token;
     }
 
@@ -50,22 +48,16 @@ public class TokenService extends BaseService {
             return null;
         }
 
-        TLoginUserExample exam = new TLoginUserExample();
-        exam.createCriteria().andTokenEqualTo(token);
-
-        List<TLoginUser> list = userMapper.selectByExample(exam);
-        if (this.isEmptyList(list)) {
-            return null;
-        }
-
-        TLoginUser user = list.get(0);
-        return String.valueOf(user.getUserId());
+        TToken o = tokenMapper.selectByPrimaryKey(token);
+        return o.getValue();
     }
 
 
     public void deleteToken(String token) {
         //
+        tokenMapper.deleteByPrimaryKey(token);
     }
+
 
     private int getExpireSecond() {
         String value = PropertiesUtils.getZhenPinProperties().get("token_expire_time")
@@ -76,6 +68,15 @@ public class TokenService extends BaseService {
         return token_expire_time;
 
     }
+
+    private void insertToDB(String token, Long userId) {
+        TToken record = new TToken();
+        record.setToken(token);
+        record.setValue(String.valueOf(userId));
+        record.setCreateTime(new Date());
+        tokenMapper.insert(record);
+    }
+
 
     public static void main(String[] args) {
         TokenService service = new TokenService();

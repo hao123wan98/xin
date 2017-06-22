@@ -17,7 +17,7 @@ public class MUserTest extends BaseTestController {
     }
 
 
-    //    @Test
+    //        @Test
     public void login() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
@@ -30,6 +30,21 @@ public class MUserTest extends BaseTestController {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
 
     }
+
+    //    @Test
+    public void changePwd() throws Exception {
+
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+                .post("/muser/pwd/change");
+        mockRequest.header("token", "bf32a052a85016bd02e54fb3c8ec94e57bed612a");
+        mockRequest.param("oldPwd", "admin");
+        mockRequest.param("newPwd", "e10adc3949ba59abbe56e057f20f883e");
+
+        MvcResult result = mockMvc.perform(mockRequest)
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+    }
+
 }
 
 
