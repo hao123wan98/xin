@@ -1,4 +1,5 @@
 import com.xin.user.controller.UserController;
+import com.xin.user.service.TokenService;
 import com.xin.user.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 //@WebMvcTest(controllers = UserController.class)
 public class UserTest extends BaseTestController {
+    @Autowired
+    TokenService tokenService;
 
     @Test
     public void Test() {
+//        tokenService.getUserId(this.token);
 
     }
 
@@ -47,7 +51,7 @@ public class UserTest extends BaseTestController {
 
     }
 
-    //    @Test
+        @Test
     public void login() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
