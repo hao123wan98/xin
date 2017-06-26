@@ -1,17 +1,11 @@
 package com.xin.aop;
 
-import java.util.Date;
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.xin.user.service.TokenService;
+import com.xin.user.service.UserService;
 import com.zhenhr.common.ResultObj;
 import com.zhenhr.common.TPErrorCodeGeneral;
 import com.zhenhr.tools.JsonUtil;
 import com.zhenhr.tools.ServletUtils;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +13,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xin.user.service.TokenService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.Enumeration;
 
 /**
  * @description
@@ -29,6 +26,8 @@ import com.xin.user.service.TokenService;
 public class ControllerInterceptor implements HandlerInterceptor {
     @Autowired
     TokenService tokenService;
+    @Autowired
+    UserService userService;
 
     private final Logger logger = LoggerFactory.getLogger(ControllerInterceptor.class);
 
