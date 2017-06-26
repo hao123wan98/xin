@@ -26,8 +26,6 @@ import java.util.Enumeration;
 public class ControllerInterceptor implements HandlerInterceptor {
     @Autowired
     TokenService tokenService;
-    @Autowired
-    UserService userService;
 
     private final Logger logger = LoggerFactory.getLogger(ControllerInterceptor.class);
 
