@@ -17,15 +17,15 @@ public class SpringBootApiApplication extends WebMvcConfigurerAdapter {
         SpringApplication.run(SpringBootApiApplication.class, args);
     }
 
-//    /**
-//     * 拦截器
-//     *
-//     * @param registry
-//     */
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new ControllerInterceptor()).addPathPatterns("/**");
-//        super.addInterceptors(registry);
-//    }
+    /**
+     * 拦截器
+     *
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new ControllerInterceptor()).addPathPatterns("/**");
+        super.addInterceptors(registry);
+    }
 
 }

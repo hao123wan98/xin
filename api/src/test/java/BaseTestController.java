@@ -10,13 +10,14 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootApiApplication.class)
+
 public class BaseTestController {
     @Autowired
     private WebApplicationContext wac;
 
     protected MockMvc mockMvc;
     //
-    public String token = "41dac444d58b9ef81ea297e11e84860be53e5d90";
+    public String token = "f39b524fec84e94984a7da118e96804d56d874f2";
 
     @Before
     public void setUp() {

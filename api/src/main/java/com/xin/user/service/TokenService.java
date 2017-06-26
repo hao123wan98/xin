@@ -7,6 +7,7 @@ import com.xin.db.entity.TLoginUser;
 import com.xin.db.entity.TLoginUserExample;
 import com.xin.db.entity.TToken;
 import com.xin.db.entity.TTokenExample;
+import com.zhenhr.common.TokenException;
 import com.zhenhr.tools.HmacshaUtils;
 import com.zhenhr.tools.PropertiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,9 @@ public class TokenService extends BaseService {
         }
 
         TToken o = tokenMapper.selectByPrimaryKey(token);
+        if (o == null) {
+            return null;
+        }
         return o.getValue();
     }
 
@@ -70,6 +74,11 @@ public class TokenService extends BaseService {
     }
 
     private void insertToDB(String token, Long userId) {
+        TTokenExample exam = new TTokenExample();
+        exam.createCriteria().andValueEqualTo(String.valueOf(userId));
+        tokenMapper.deleteByExample(exam);
+
+
         TToken record = new TToken();
         record.setToken(token);
         record.setValue(String.valueOf(userId));
