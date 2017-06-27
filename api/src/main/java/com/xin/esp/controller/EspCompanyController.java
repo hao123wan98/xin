@@ -1,10 +1,11 @@
 package com.xin.esp.controller;
 
 import com.xin.common.BaseController;
+import com.xin.common.ListPageVO;
+import com.xin.db.common.Page;
 import com.xin.db.entity.TCompany;
 import com.xin.db.entity.TLoginUser;
 import com.xin.esp.service.EspCompanyService;
-import com.xin.user.dao.LoginOKVO;
 import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,61 @@ import javax.servlet.http.HttpServletResponse;
 public class EspCompanyController extends BaseController {
     @Autowired
     EspCompanyService espCompanyService;
+
+    /**
+     * 获取企业列表
+     *
+     * @param req
+     * @param res
+     * @param page
+     * @param reviewState
+     */
+    @RequestMapping(value = "list")
+    public void list(HttpServletRequest req, HttpServletResponse res, Page page, String reviewState) {
+        ListPageVO vo = espCompanyService.list(page, reviewState);
+        ServletUtils.toJson(vo, req, res);
+    }
+
+    /**
+     * 企业详情
+     *
+     * @param req
+     * @param res
+     * @param companyId
+     */
+    @RequestMapping(value = "info")
+    public void info(HttpServletRequest req, HttpServletResponse res, Long companyId) {
+        TCompany vo = espCompanyService.getCompany(companyId);
+        ServletUtils.toJson(vo, req, res);
+    }
+
+    /**
+     * 审核结果
+     *
+     * @param req
+     * @param res
+     * @param companyId
+     * @param reviewState
+     */
+    @RequestMapping(value = "review/state")
+    public void reviewState(HttpServletRequest req, HttpServletResponse res, Long companyId, String reviewState) {
+        espCompanyService.setReviewState(companyId, reviewState);
+        ServletUtils.toJson(req, res);
+    }
+
+    /**
+     * 删除企业
+     *
+     * @param req
+     * @param res
+     * @param companyId
+     */
+    @RequestMapping(value = "delete")
+    public void delete(HttpServletRequest req, HttpServletResponse res, Long companyId) {
+        espCompanyService.delete(companyId);
+        ServletUtils.toJson(req, res);
+    }
+
 
     /**
      * 企业信息

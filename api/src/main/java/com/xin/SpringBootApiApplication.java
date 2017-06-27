@@ -1,13 +1,10 @@
 package com.xin;
 
 import com.xin.aop.ControllerInterceptor;
-import com.xin.user.service.TokenService;
-import com.zhenhr.common.TokenException;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 

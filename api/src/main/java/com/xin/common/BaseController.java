@@ -1,5 +1,6 @@
 package com.xin.common;
 
+import com.xin.company.service.CompanyService;
 import com.xin.user.service.TokenService;
 import com.zhenhr.common.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
     @Autowired
     TokenService tokenService;
+    @Autowired
+    CompanyService companyService;
+
 
     /**
      * 用户Id
@@ -28,6 +32,10 @@ public class BaseController {
         }
 
         return Long.valueOf(userId);
+    }
+
+    public Long getCompanyId(Long userId) {
+        return companyService.getCompanyId(userId);
     }
 
 

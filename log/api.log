@@ -1,0 +1,168 @@
+2017-06-26 17:59:43.249 |-INFO 
+            [restartedMain] com.xin.SpringBootApiApplication [48] -| Starting SpringBootApiApplication on bogon with PID 14310 (/Volumes/work/xin_work/api/api/target/classes started by guoyongshi in /Volumes/work/xin_work/api)
+2017-06-26 17:59:43.254 |-INFO 
+            [restartedMain] com.xin.SpringBootApiApplication [641] -| The following profiles are active: test
+2017-06-26 17:59:43.359 |-INFO 
+            [restartedMain] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [582] -| Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6152ecff: startup date [Mon Jun 26 17:59:43 CST 2017]; root of context hierarchy
+2017-06-26 17:59:43.542 |-INFO 
+            [background-preinit] org.hibernate.validator.internal.util.Version [30] -| HV000001: Hibernate Validator 5.3.4.Final
+2017-06-26 17:59:44.155 |-INFO 
+            [restartedMain] org.springframework.beans.factory.support.DefaultListableBeanFactory [828] -| Overriding bean definition for bean 'dataSource' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Dbcp; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Dbcp.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Tomcat.class]]
+2017-06-26 17:59:44.504 |-INFO 
+            [restartedMain] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [325] -| Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-26 17:59:44.571 |-INFO 
+            [restartedMain] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [325] -| Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-26 17:59:44.628 |-INFO 
+            [restartedMain] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [325] -| Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bd1987cc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-26 17:59:45.192 |-INFO 
+            [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [89] -| Tomcat initialized with port(s): 8080 (http)
+2017-06-26 17:59:45.207 |-INFO 
+            [restartedMain] org.apache.catalina.core.StandardService [179] -| Starting service Tomcat
+2017-06-26 17:59:45.209 |-INFO 
+            [restartedMain] org.apache.catalina.core.StandardEngine [179] -| Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-06-26 17:59:45.299 |-INFO 
+            [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] -| Initializing Spring embedded WebApplicationContext
+2017-06-26 17:59:45.299 |-INFO 
+            [localhost-startStop-1] org.springframework.web.context.ContextLoader [276] -| Root WebApplicationContext: initialization completed in 1945 ms
+2017-06-26 17:59:45.541 |-INFO 
+            [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean [190] -| Mapping servlet: 'dispatcherServlet' to [/]
+2017-06-26 17:59:45.546 |-INFO 
+            [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-06-26 17:59:45.547 |-INFO 
+            [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-06-26 17:59:45.547 |-INFO 
+            [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-06-26 17:59:45.547 |-INFO 
+            [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'requestContextFilter' to: [/*]
+2017-06-26 17:59:47.059 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [534] -| Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6152ecff: startup date [Mon Jun 26 17:59:43 CST 2017]; root of context hierarchy
+2017-06-26 17:59:47.139 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/cv/list]}" onto public void com.xin.company.controller.CompanyCVController.list(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.140 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/cv/info]}" onto public void com.xin.company.controller.CompanyCVController.info(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long)
+2017-06-26 17:59:47.141 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/cv/state/set]}" onto public void com.xin.company.controller.CompanyCVController.setState(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long,java.lang.String)
+2017-06-26 17:59:47.142 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/list]}" onto public void com.xin.company.controller.CompanyController.getInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.common.Page,java.lang.String)
+2017-06-26 17:59:47.142 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/info/get]}" onto public void com.xin.company.controller.CompanyController.getInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.142 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/info/set]}" onto public void com.xin.company.controller.CompanyController.setInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.entity.TCompany)
+2017-06-26 17:59:47.144 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/postion/get]}" onto public void com.xin.company.controller.CompanyPosController.get(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long)
+2017-06-26 17:59:47.145 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/postion/list]}" onto public void com.xin.company.controller.CompanyPosController.list(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.145 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/postion/set]}" onto public void com.xin.company.controller.CompanyPosController.set(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.entity.TCompanyPostion)
+2017-06-26 17:59:47.145 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/postion/close]}" onto public void com.xin.company.controller.CompanyPosController.closePostion(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long)
+2017-06-26 17:59:47.146 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/company/postion/reopen]}" onto public void com.xin.company.controller.CompanyPosController.reopenPostion(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long)
+2017-06-26 17:59:47.146 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/mcompany/set]}" onto public void com.xin.esp.controller.EspCompanyController.set(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.entity.TCompany)
+2017-06-26 17:59:47.147 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/mcompany/linkuser]}" onto public void com.xin.esp.controller.EspCompanyController.linkUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long,com.xin.db.entity.TLoginUser)
+2017-06-26 17:59:47.151 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/muser/logout]}" onto public void com.xin.esp.controller.EspUserController.logout(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.151 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/muser/pwd/change]}" onto public void com.xin.esp.controller.EspUserController.changepwd(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.151 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/muser/login]}" onto public void com.xin.esp.controller.EspUserController.login(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.152 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/file/sign/create]}" onto public void com.xin.system.controller.FileUploadController.createSign(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.153 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/basic/set]}" onto public void com.xin.user.controller.ResumeController.basicSet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,com.xin.user.dao.UserCVInfoVO)
+2017-06-26 17:59:47.154 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/basic/get]}" onto public void com.xin.user.controller.ResumeController.basicGet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.154 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/workhistory/list]}" onto public void com.xin.user.controller.ResumeController.workhistoryList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.155 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/workhistory/set]}" onto public void com.xin.user.controller.ResumeController.workhistorySet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,com.xin.db.entity.TUserWorkHistory)
+2017-06-26 17:59:47.155 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/workhistory/get]}" onto public void com.xin.user.controller.ResumeController.workhistorySet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.Long)
+2017-06-26 17:59:47.155 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/workhistory/del]}" onto public void com.xin.user.controller.ResumeController.workhistoryDel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.Long)
+2017-06-26 17:59:47.156 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/info]}" onto public void com.xin.user.controller.ResumeController.info(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.157 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/basic/set]}" onto public void com.xin.user.controller.ResumeOuterController.basicSet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,com.xin.user.dao.UserCVInfoVO)
+2017-06-26 17:59:47.158 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/basic/get]}" onto public void com.xin.user.controller.ResumeOuterController.basicGet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.158 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/workhistory/list]}" onto public void com.xin.user.controller.ResumeOuterController.workhistoryList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.159 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/workhistory/set]}" onto public void com.xin.user.controller.ResumeOuterController.workhistorySet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,com.xin.db.entity.TUserWorkHistory)
+2017-06-26 17:59:47.159 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/workhistory/get]}" onto public void com.xin.user.controller.ResumeOuterController.workhistorySet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.Long)
+2017-06-26 17:59:47.160 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/workhistory/del]}" onto public void com.xin.user.controller.ResumeOuterController.workhistoryDel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.Long)
+2017-06-26 17:59:47.160 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/file/upload]}" onto public void com.xin.user.controller.ResumeOuterController.fileUpload(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.161 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/cv/outer/info]}" onto public void com.xin.user.controller.ResumeOuterController.info(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.163 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/info/get]}" onto public void com.xin.user.controller.UserController.get(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.163 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/register]}" onto public void com.xin.user.controller.UserController.register(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.164 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/info/set]}" onto public void com.xin.user.controller.UserController.set(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.entity.TLoginUser)
+2017-06-26 17:59:47.164 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/smscode/send]}" onto public void com.xin.user.controller.UserController.smsSend(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.164 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/pwd/reset]}" onto public void com.xin.user.controller.UserController.resetpwd(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.164 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/logout]}" onto public void com.xin.user.controller.UserController.logout(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.165 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/login]}" onto public void com.xin.user.controller.UserController.login(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String)
+2017-06-26 17:59:47.165 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/role/switch]}" onto public void com.xin.user.controller.UserController.roleSwitch(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2017-06-26 17:59:47.165 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/send/cvmail]}" onto public void com.xin.user.controller.UserController.sendCVMail(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.166 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/postions/search]}" onto public void com.xin.user.controller.UserPostionController.search(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.user.dao.SearchPosObj)
+2017-06-26 17:59:47.166 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/postions/request]}" onto public void com.xin.user.controller.UserPostionController.request(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Long)
+2017-06-26 17:59:47.167 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/postions/home]}" onto public void com.xin.user.controller.UserPostionController.home(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.xin.db.common.Page)
+2017-06-26 17:59:47.167 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/user/postions/history]}" onto public void com.xin.user.controller.UserPostionController.history(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.168 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-06-26 17:59:47.169 |-INFO 
+            [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-26 17:59:47.231 |-INFO 
+            [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-26 17:59:47.232 |-INFO 
+            [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-26 17:59:47.294 |-INFO 
+            [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-26 17:59:47.764 |-INFO 
+            [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [58] -| LiveReload server is running on port 35729
+2017-06-26 17:59:47.877 |-INFO 
+            [restartedMain] org.springframework.jmx.export.annotation.AnnotationMBeanExporter [431] -| Registering beans for JMX exposure on startup
+2017-06-26 17:59:47.894 |-INFO 
+            [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Initializing ProtocolHandler ["http-nio-8080"]
+2017-06-26 17:59:47.905 |-INFO 
+            [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Starting ProtocolHandler [http-nio-8080]
+2017-06-26 17:59:47.919 |-INFO 
+            [restartedMain] org.apache.tomcat.util.net.NioSelectorPool [179] -| Using a shared selector for servlet write/read
+2017-06-26 17:59:47.934 |-INFO 
+            [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [192] -| Tomcat started on port(s): 8080 (http)
+2017-06-26 17:59:47.939 |-INFO 
+            [restartedMain] com.xin.SpringBootApiApplication [57] -| Started SpringBootApiApplication in 5.288 seconds (JVM running for 6.111)
+2017-06-26 17:59:54.514 |-INFO 
+            [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] -| Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-06-26 17:59:54.515 |-INFO 
+            [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet [489] -| FrameworkServlet 'dispatcherServlet': initialization started
+2017-06-26 17:59:54.543 |-INFO 
+            [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet [508] -| FrameworkServlet 'dispatcherServlet': initialization completed in 28 ms
+2017-06-26 18:00:10.786 |-INFO 
+            [http-nio-8080-exec-1] com.xin.aop.ControllerInterceptor [64] -| receied request>>>>>>>>>>>>>>http://localhost:8080/error,time=1498471210786
+2017-06-26 18:00:10.788 |-INFO 
+            [http-nio-8080-exec-1] com.xin.aop.ControllerInterceptor [74] -| request Param:{}
+2017-06-26 18:00:10.788 |-INFO 
+            [http-nio-8080-exec-1] com.xin.aop.ControllerInterceptor [93] -| token:null
+2017-06-26 18:00:10.789 |-INFO 
+            [http-nio-8080-exec-1] com.xin.aop.ControllerInterceptor [99] -| token is empty
+2017-06-26 18:00:10.813 |-INFO 
+            [Thread-9] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [987] -| Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6152ecff: startup date [Mon Jun 26 17:59:43 CST 2017]; root of context hierarchy

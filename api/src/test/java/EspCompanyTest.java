@@ -16,8 +16,19 @@ public class EspCompanyTest extends BaseTestController {
 
     }
 
+    //    @Test
+    public void list() throws Exception {
 
-    @Test
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+                .post("/mcompany/list");
+        mockRequest.header("token", this.token);
+
+        MvcResult result = mockMvc.perform(mockRequest)
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+    }
+
+    //    @Test
     public void setCompany() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
@@ -32,13 +43,15 @@ public class EspCompanyTest extends BaseTestController {
     }
 
     //    @Test
-    public void changePwd() throws Exception {
+    public void linkUser() throws Exception {
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-                .post("/muser/pwd/change");
-        mockRequest.header("token", "bf32a052a85016bd02e54fb3c8ec94e57bed612a");
-        mockRequest.param("oldPwd", "admin");
-        mockRequest.param("newPwd", "e10adc3949ba59abbe56e057f20f883e");
+                .post("/mcompany/linkuser");
+        mockRequest.header("token", this.token);
+        mockRequest.param("companyId", "4");
+        mockRequest.param("mobile", "13699274930");
+        mockRequest.param("pwd", "123456");
+
 
         MvcResult result = mockMvc.perform(mockRequest)
                 .andDo(MockMvcResultHandlers.print()).andReturn();

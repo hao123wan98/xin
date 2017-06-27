@@ -51,11 +51,6 @@ public class CompanyController extends BaseController {
         ServletUtils.toJson(company, req, res);
     }
 
-    @RequestMapping(value = "list")
-    public void getInfo(HttpServletRequest req, HttpServletResponse res, Page page, String reviewState) {
-        ListPageVO vo = companyService.list(page, reviewState);
-        ServletUtils.toJson(vo, req, res);
-    }
 
 
 //    /**

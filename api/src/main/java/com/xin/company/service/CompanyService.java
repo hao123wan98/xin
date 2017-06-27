@@ -85,28 +85,7 @@ public class CompanyService extends BaseService {
         return com.getCompanyId();
     }
 
-    /**
-     * 获取企业列表
-     *
-     * @param page
-     * @return
-     */
-    public ListPageVO list(Page page, String state) {
-        TCompanyExample exam = new TCompanyExample();
-        if (state != null) {
-            exam.createCriteria().andStateEqualTo("1").andReviewStateEqualTo(state);
-        } else {
-            exam.createCriteria().andStateEqualTo("1");
-        }
-        int count = companyMapper.countByExample(exam);
 
-        exam.setPage(page);
-        List<TCompany> list = companyMapper.selectByExample(exam);
-        ListPageVO vo = new ListPageVO();
-        vo.setList(list);
-        vo.setPage(page.getPageNo(), page.getSize(), count);
-        return vo;
-    }
 
 
 }

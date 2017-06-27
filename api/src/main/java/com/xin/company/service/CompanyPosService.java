@@ -28,13 +28,16 @@ public class CompanyPosService extends BaseService {
     /**
      * 获取企业职位列表
      *
-     * @param userId
+     * @param companyId
      */
-    public List<TCompanyPostion> list(Long userId) {
-        Long companyId = this.getCompanyId(userId);
+    public List<TCompanyPostion> list(Long companyId, String posState) {
 
         TCompanyPostionExample exam = new TCompanyPostionExample();
-        exam.createCriteria().andCompanyIdEqualTo(companyId).andStateEqualTo("1");
+        if (posState != null) {
+            exam.createCriteria().andCompanyIdEqualTo(companyId).andStateEqualTo("1").andPosStateEqualTo(posState);
+        } else {
+            exam.createCriteria().andCompanyIdEqualTo(companyId).andStateEqualTo("1");
+        }
         exam.setOrderByClause("create_time desc");
         List<TCompanyPostion> list = companyPostionMapper.selectByExample(exam);
         if (this.isEmptyList(list)) {
@@ -47,11 +50,10 @@ public class CompanyPosService extends BaseService {
     /**
      * 发布职位
      *
-     * @param userId
+     * @param companyId
      * @param postion
      */
-    public void setPostion(Long userId, TCompanyPostion postion) {
-        Long companyId = this.getCompanyId(userId);
+    public void setPostion(Long companyId, TCompanyPostion postion) {
 
         if (postion.getTid() == null) {
             if (this.isEmptyValue(postion.getName())) {
@@ -95,7 +97,7 @@ public class CompanyPosService extends BaseService {
     /**
      * 关闭职位
      */
-    public void closePostion(Long userId, Long postionId) {
+    public void closePostion(Long postionId) {
         TCompanyPostion old = companyPostionMapper.selectByPrimaryKey(postionId);
         if (old == null) {
             throw new ParameterException("无效的参数Id");
@@ -109,10 +111,9 @@ public class CompanyPosService extends BaseService {
     /**
      * 重新打开职位
      *
-     * @param userId
      * @param postionId
      */
-    public void reOpenPostion(Long userId, Long postionId) {
+    public void reOpenPostion(Long postionId) {
         TCompanyPostion old = companyPostionMapper.selectByPrimaryKey(postionId);
         if (old == null) {
             throw new ParameterException("无效的参数Id");

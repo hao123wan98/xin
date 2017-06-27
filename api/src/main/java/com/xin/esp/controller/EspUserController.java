@@ -1,73 +1,82 @@
-/**
- * 2015-2016 龙果学院 (www.roncoo.com)
- */
 package com.xin.esp.controller;
 
 import com.xin.common.BaseController;
-import com.xin.esp.service.EspUserService;
-import com.xin.user.dao.LoginOKVO;
+import com.xin.common.ListPageVO;
+import com.xin.db.common.Page;
+import com.xin.db.entity.TCompany;
+import com.xin.db.entity.TLoginUser;
+import com.xin.esp.service.EspCompanyService;
 import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 管理后台用户登录
+ * Created by guoyongshi on 17/6/26.
  */
+
 @Controller
-@RequestMapping(value = "/muser")
+@RequestMapping(value = "muser")
 public class EspUserController extends BaseController {
     @Autowired
-    EspUserService userService;
-
+    EspCompanyService espCompanyService;
 
     /**
-     * 登录
+     * 获取注册用户列表
      *
      * @param req
      * @param res
-     * @param email
+     * @param page
+     * @param reviewState
      */
-    @RequestMapping(value = "login")
-    public void login(HttpServletRequest req, HttpServletResponse res, String email,
-                      String pwd) {
-        LoginOKVO vo = userService.login(email, pwd);
+    @RequestMapping(value = "list")
+    public void list(HttpServletRequest req, HttpServletResponse res, Page page, String reviewState) {
+        ListPageVO vo = espCompanyService.list(page, reviewState);
+        ServletUtils.toJson(vo, req, res);
+    }
+
+    /**
+     * 企业详情
+     *
+     * @param req
+     * @param res
+     * @param companyId
+     */
+    @RequestMapping(value = "info")
+    public void info(HttpServletRequest req, HttpServletResponse res, Long companyId) {
+        TCompany vo = espCompanyService.getCompany(companyId);
         ServletUtils.toJson(vo, req, res);
     }
 
 
     /**
-     * 修改密码
+     * 删除企业
      *
      * @param req
      * @param res
-     * @param oldPwd
-     * @param newPwd
+     * @param companyId
      */
-    @RequestMapping(value = "pwd/change")
-    public void changepwd(HttpServletRequest req, HttpServletResponse res, String oldPwd,
-                          String newPwd) {
-        Long userId = this.getUserId(req);
-        LoginOKVO vo = userService.changePwd(userId, oldPwd, newPwd);
-        ServletUtils.toJson(vo, req, res);
-    }
-
-    /**
-     * 登出
-     *
-     * @param req
-     * @param res
-     * @param
-     */
-    @RequestMapping(value = "logout")
-    public void logout(HttpServletRequest req, HttpServletResponse res,
-                       @RequestHeader("token") String token) {
-        userService.logout(token);
+    @RequestMapping(value = "delete")
+    public void delete(HttpServletRequest req, HttpServletResponse res, Long companyId) {
+        espCompanyService.delete(companyId);
         ServletUtils.toJson(req, res);
+    }
+
+
+    /**
+     * 企业信息
+     *
+     * @param req
+     * @param res
+     * @param company
+     */
+    @RequestMapping(value = "set")
+    public void set(HttpServletRequest req, HttpServletResponse res, TCompany company) {
+        TCompany vo = espCompanyService.setCompany(company);
+        ServletUtils.toJson(vo, req, res);
     }
 
 

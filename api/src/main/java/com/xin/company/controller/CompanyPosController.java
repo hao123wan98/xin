@@ -26,18 +26,22 @@ public class CompanyPosController extends BaseController {
 
     /**
      * 获取职位列表
+     *
      * @param req
      * @param res
      */
     @RequestMapping(value = "list")
-    public void list(HttpServletRequest req, HttpServletResponse res) {
+    public void list(HttpServletRequest req, HttpServletResponse res, String posState) {
         Long userId = this.getUserId(req);
-        List<TCompanyPostion> list = companyPosService.list(userId);
+        Long companyId = this.getCompanyId(userId);
+
+        List<TCompanyPostion> list = companyPosService.list(companyId, posState);
         ServletUtils.toJson(list, req, res);
     }
 
     /**
      * 新加或者编辑职位
+     *
      * @param req
      * @param res
      * @param postion
@@ -45,12 +49,15 @@ public class CompanyPosController extends BaseController {
     @RequestMapping(value = "set")
     public void set(HttpServletRequest req, HttpServletResponse res, TCompanyPostion postion) {
         Long userId = this.getUserId(req);
-        companyPosService.setPostion(userId, postion);
+        Long companyId = this.getCompanyId(userId);
+
+        companyPosService.setPostion(companyId, postion);
         ServletUtils.toJson(req, res);
     }
 
     /**
      * 获取职位详情
+     *
      * @param req
      * @param res
      * @param postionId
@@ -58,33 +65,34 @@ public class CompanyPosController extends BaseController {
     @RequestMapping(value = "get")
     public void get(HttpServletRequest req, HttpServletResponse res, Long postionId) {
         Long userId = this.getUserId(req);
+
         TCompanyPostion pos = companyPosService.getPostion(postionId);
         ServletUtils.toJson(pos, req, res);
     }
 
     /**
      * 关闭职位
+     *
      * @param req
      * @param res
      * @param postionId
      */
     @RequestMapping(value = "close")
     public void closePostion(HttpServletRequest req, HttpServletResponse res, Long postionId) {
-        Long userId = this.getUserId(req);
-        companyPosService.closePostion(userId, postionId);
+        companyPosService.closePostion(postionId);
         ServletUtils.toJson(req, res);
     }
 
     /**
      * 重启职位
+     *
      * @param req
      * @param res
      * @param postionId
      */
     @RequestMapping(value = "reopen")
     public void reopenPostion(HttpServletRequest req, HttpServletResponse res, Long postionId) {
-        Long userId = this.getUserId(req);
-        companyPosService.reOpenPostion(userId, postionId);
+        companyPosService.reOpenPostion(postionId);
         ServletUtils.toJson(req, res);
     }
 
