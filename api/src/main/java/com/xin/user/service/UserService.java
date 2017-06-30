@@ -304,14 +304,14 @@ public class UserService extends BaseService {
 
 
     public void roleSwitch(Long userId, String role) {
-        TLoginUser user = this.get(userId);
-        if (role.equals(user.getRole())) {
-            return;
+        if (this.isEmptyValue(role)) {
+            throw new ParameterException("role不能为空", "role");
         }
 
+
+        TLoginUser user = this.get(userId);
         user.setRole(role);
         userMapper.updateByPrimaryKey(user);
-
     }
 
     public void update(TLoginUser user) {

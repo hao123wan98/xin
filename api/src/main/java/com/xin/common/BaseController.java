@@ -38,5 +38,9 @@ public class BaseController {
         return companyService.getCompanyId(userId);
     }
 
+    public Long getCompanyId(HttpServletRequest req) {
+        Long userId = this.getUserId(req);
+        return this.getCompanyId(userId);
+    }
 
 }

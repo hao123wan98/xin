@@ -39,10 +39,9 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      */
     @RequestMapping(value = "basic/get")
-    public void basicGet(HttpServletRequest req, HttpServletResponse res, String code) {
+    public void basicGet(HttpServletRequest req, HttpServletResponse res) {
         UserCVInfoVO vo = userCVService.getCVBsic(this.getUserId(req));
         ServletUtils.toJson(vo, req, res);
     }
@@ -52,11 +51,10 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      * @param obj
      */
     @RequestMapping(value = "basic/set")
-    public void basicSet(HttpServletRequest req, HttpServletResponse res, String code, UserCVInfoVO obj) {
+    public void basicSet(HttpServletRequest req, HttpServletResponse res, UserCVInfoVO obj) {
         userCVService.updateCVBase(this.getUserId(req), obj);
         ServletUtils.toJson(req, res);
     }
@@ -66,10 +64,9 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      */
     @RequestMapping(value = "workhistory/list")
-    public void workhistoryList(HttpServletRequest req, HttpServletResponse res, String code) {
+    public void workhistoryList(HttpServletRequest req, HttpServletResponse res) {
         ServletUtils.toJson(userCVService.getCVWorkHistoryList(this.getUserId(req)), req, res);
     }
 
@@ -78,11 +75,10 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      * @param tid
      */
     @RequestMapping(value = "workhistory/get")
-    public void workhistorySet(HttpServletRequest req, HttpServletResponse res, String code, Long tid) {
+    public void workhistorySet(HttpServletRequest req, HttpServletResponse res, Long tid) {
         ServletUtils.toJson(userCVService.getWorkHistory(this.getUserId(req), tid), req, res);
     }
 
@@ -91,11 +87,10 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      * @param obj
      */
     @RequestMapping(value = "workhistory/set")
-    public void workhistorySet(HttpServletRequest req, HttpServletResponse res, String code, TUserWorkHistory obj) {
+    public void workhistorySet(HttpServletRequest req, HttpServletResponse res, TUserWorkHistory obj) {
         userCVService.setWorkHistory(this.getUserId(req), obj);
         ServletUtils.toJson(req, res);
     }
@@ -105,11 +100,10 @@ public class ResumeController extends BaseController {
      *
      * @param req
      * @param res
-     * @param code
      * @param tid
      */
     @RequestMapping(value = "workhistory/del")
-    public void workhistoryDel(HttpServletRequest req, HttpServletResponse res, String code, Long tid) {
+    public void workhistoryDel(HttpServletRequest req, HttpServletResponse res, Long tid) {
         userCVService.delWorkHistory(this.getUserId(req), tid);
         ServletUtils.toJson(req, res);
     }

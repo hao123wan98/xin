@@ -1,9 +1,8 @@
-package com.xin.company.controller;
+package com.xin.esp.controller;
 
 import com.xin.common.BaseController;
 import com.xin.company.dao.CompanyCVDao;
 import com.xin.company.service.CompanyCVService;
-import com.xin.db.entity.TCompany;
 import com.xin.user.dao.UserCVInfoVO;
 import com.zhenhr.tools.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/company/cv")
-public class CompanyCVController extends BaseController {
+@RequestMapping("mcompany/cv")
+public class EspCompanyCVController extends BaseController {
     @Autowired
     CompanyCVService companyCVService;
 
@@ -33,9 +32,7 @@ public class CompanyCVController extends BaseController {
      * @param state
      */
     @RequestMapping(value = "list")
-    public void list(HttpServletRequest req, HttpServletResponse res, String state) {
-        Long companyId = this.getCompanyId(req);
-
+    public void list(HttpServletRequest req, HttpServletResponse res, Long companyId, String state) {
         List<CompanyCVDao> list = companyCVService.list(companyId, state);
         ServletUtils.toJson(list, req, res);
     }

@@ -33,11 +33,10 @@ public class CompanyCVService extends BaseService {
     /**
      * 获取投递的简历列表
      *
-     * @param userId
+     * @param companyId
      * @return
      */
-    public List<CompanyCVDao> list(Long userId, String state) {
-        Long companyId = this.getCompanyId(userId);
+    public List<CompanyCVDao> list(Long companyId, String state) {
 
         String sql = "select t1.tid, t1.postion_id, t3.name as postion_name, t2.* from t_user_postion t1 " +
                 " left join t_user t2 on t1.user_id = t2.user_id " +
